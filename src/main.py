@@ -11,6 +11,27 @@
 from vex import *
 
 brain = Brain()
+controller = Controller()
+#Motors on ports 1 through 6
+#Motors(port: Port, reversed: bool)
+#One side(either left or right) has to be all false while the other side is all true; so that it doesn't rotate, staying in one spot
+#-for our robot right is false;left is true
+
+#intake PORT14
+#1-front, 2-bottom, 3-top
+#right front-11, right bottom 12, right top 13... Left front 3, Left bottom 4, Left top 5)
+motor_left_1 = Motor(Ports.PORT3, True)
+motor_left_2 = Motor(Ports.PORT4, True)
+motor_left_3 = Motor(Ports.PORT5, False)
+motor_right_1 = Motor(Ports.PORT11, False)
+motor_right_2 = Motor(Ports.PORT12, False)
+motor_right_3 = Motor(Ports.PORT13, True)
+#creating motor groups
+left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
+right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
+
+
+
 
 def autonomous():
     brain.screen.clear_screen()
@@ -21,8 +42,21 @@ def driver_control():
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
+    #Driver_ctrl
     while True:
+        speed = controller.axis3.position()
+        turn = controller.axis1.position()
+
+        left_motors.spin(FORWARD, speed + turn, PERCENT)
+        right_motors.spin(FORWARD, speed - turn, PERCENT)
+
+
+
+
         wait(20, MSEC)
+
+
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, autonomous)
+
