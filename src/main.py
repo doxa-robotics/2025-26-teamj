@@ -26,9 +26,11 @@ motor_left_3 = Motor(Ports.PORT5, False)
 motor_right_1 = Motor(Ports.PORT11, False)
 motor_right_2 = Motor(Ports.PORT12, False)
 motor_right_3 = Motor(Ports.PORT13, True)
+
 #creating motor groups
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
+motor_intake = Motor(Ports.PORT14, True)
 
 
 
@@ -49,6 +51,14 @@ def driver_control():
 
         left_motors.spin(FORWARD, speed + turn, PERCENT)
         right_motors.spin(FORWARD, speed - turn, PERCENT)
+        
+        if controller.buttonR1.pressing():
+            motor_intake.spin(FORWARD, speed + turn, PERCENT)
+        else:
+            motor_intake.stop(mode=COAST)
+
+
+            
 
 
 
