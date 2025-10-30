@@ -56,6 +56,11 @@ def driver_control():
             motor_intake.spin(FORWARD, speed + turn, PERCENT)
         else:
             motor_intake.stop(mode=COAST)
+        
+        if controller.buttonL1.pressing():
+            motor_intake.spin(FORWARD, speed - turn, PERCENT)
+        else:
+            motor_intake.stop(mode=COAST)
 
 
             
