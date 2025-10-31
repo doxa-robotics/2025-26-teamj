@@ -32,7 +32,7 @@ motor_right_3 = Motor(Ports.PORT13, True)
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
-motor_intake_2 = Motor(Ports.PORT6, False)
+motor_intake_2 = Motor(Ports.PORT7, False)
 match_load = Pneumatics(brain.three_wire_port.b)
 
 
