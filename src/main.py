@@ -39,6 +39,25 @@ def autonomous():
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
     # place automonous code here
+    #needs extra help
+    left_motors.spin(FORWARD, 100, PERCENT)
+    right_motors.spin(FORWARD, 100, PERCENT)
+    wait(2000, MSEC)
+
+    motor_intake.spin(FORWARD, 100, PERCENT)
+    wait(1000, MSEC)
+    motor_intake.stop()
+
+    left_motors.spin(FORWARD, -100, PERCENT)
+    right_motors.spin(FORWARD, -100, PERCENT)
+    wait(1000, MSEC)
+
+    #stopping everthing
+    left_motors.stop()
+    right_motors.stop()
+    motor_intake.stop()
+    brain.screen.print('Autonomous round done')    
+    wait(1000, MSEC)
 
 def driver_control():
     brain.screen.clear_screen()
@@ -59,13 +78,7 @@ def driver_control():
         else:
             motor_intake.stop(COAST)
 
-
-            
-
-
-
-
-        wait(20, MSEC)
+      wait(20, MSEC)
 
 
 
