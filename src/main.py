@@ -31,6 +31,7 @@ motor_right_3 = Motor(Ports.PORT13, True)
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
+motor_intake_2 = Motor(Ports.PORT15. True)
 
 
 
@@ -50,7 +51,7 @@ def autonomous():
 
     left_motors.spin(FORWARD, -100, PERCENT)
     right_motors.spin(FORWARD, -100, PERCENT)
-    wait(1000, MSEC)
+    wait(1500, MSEC)
 
     #stopping everthing
     left_motors.stop()
@@ -77,6 +78,9 @@ def driver_control():
            motor_intake.spin(FORWARD, -100, PERCENT)
         else:
             motor_intake.stop(COAST)
+
+        if controller.buttonR2.pressing():
+            motor_intake_2.spin(FORWARD, 100, PERCENT)
 
         wait(20, MSEC)
 
