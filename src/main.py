@@ -28,11 +28,13 @@ motor_right_2 = Motor(Ports.PORT12, False)
 motor_right_3 = Motor(Ports.PORT13, True)
 
 #creating motor groups
+#match_loa 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
 motor_intake_2 = Motor(Ports.PORT15, True)
 match_load = Pneumatics(brain.three_wire_port.b)
+match_load_2 = Pneumatics(brain.three_wire_port.a) 
 
 
 
@@ -89,15 +91,13 @@ def driver_control():
 
         #Codes for Pneumatics (toggle)
         if controller.buttonX.pressing():
-            Pneumatics.open(True)
+            match_load.open(True)
+            match_load_2.close(True)
         elif controller.buttonY.pressing():
-            Pneumatics.close(True)
+            match_load.close(True)
+            match_load_2.open(True)
         
-        wait(20, MSEC)
-
-
-        
-
+    
         wait(20, MSEC)
 
 
