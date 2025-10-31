@@ -74,6 +74,7 @@ def driver_control():
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT)
         
+        #Second intake motor
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL1.pressing():
@@ -88,15 +89,16 @@ def driver_control():
         else:
             motor_intake_2.stop(COAST)
 
-        #Codes for Pneumatics (toggle)
-        if controller.buttonX.pressed():
+        #Codes for Pneumatics
+        if controller.buttonX.pressing():
+            toggle_state = not toggle_state
             match_load.open()
-        elif controller.buttonX.pressed(): 
+        else:
             match_load.close()
-
-
+        
+        wait(300, MSEC)
+         
           
-
 
         
     
