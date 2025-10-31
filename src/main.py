@@ -68,8 +68,8 @@ def driver_control():
         speed = controller.axis3.position()
         turn = controller.axis1.position()
 
-        left_motors.spin(FORWARD, speed + turn, PERCENT)
-        right_motors.spin(FORWARD, speed - turn, PERCENT)
+        left_motors.spin(FORWARD, speed - turn, PERCENT)
+        right_motors.spin(FORWARD, speed + turn, PERCENT)
         
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
