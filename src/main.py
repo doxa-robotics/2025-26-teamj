@@ -33,8 +33,7 @@ left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
 motor_intake_2 = Motor(Ports.PORT15, True)
-match_load = Pneumatics(brain.three_wire_port.a)
-match_load_2 = Pneumatics(brain.three_wire_port.b) 
+match_load = Pneumatics(brain.three_wire_port.b)
 
 
 
@@ -90,12 +89,14 @@ def driver_control():
             motor_intake_2.stop(COAST)
 
         #Codes for Pneumatics (toggle)
-        if controller.buttonX.pressing():
-            match_load.open
-            match_load_2.close
-        elif controller.buttonY.pressing():
-            match_load.close
-            match_load_2.open
+        if controller.buttonX.pressed():
+            match_load.open()
+        elif controller.buttonX.pressed(): 
+            match_load.close()
+
+
+          
+
 
         
     
