@@ -37,7 +37,6 @@ match_load = Pneumatics(brain.three_wire_port.b)
 
 
 
-
 def autonomous():
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
@@ -85,9 +84,9 @@ def driver_control():
             motor_intake.stop(COAST)
 
         if controller.buttonR2.pressing():
-            motor_intake_2.spin(FORWARD, 100, PERCENT)
-        elif controller.buttonL2.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
+        elif controller.buttonL2.pressing():
+            motor_intake_2.spin(FORWARD, 100, PERCENT)
         else:
             motor_intake_2.stop(COAST)
 
