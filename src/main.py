@@ -32,7 +32,7 @@ motor_right_3 = Motor(Ports.PORT13, True)
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
-motor_intake_2 = Motor(Ports.PORT6, True)
+motor_intake_2 = Motor(Ports.PORT6, False)
 match_load = Pneumatics(brain.three_wire_port.b)
 
 
@@ -75,7 +75,7 @@ def driver_control():
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT)
         
-        #Second intake motor
+       
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL1.pressing():
@@ -83,6 +83,7 @@ def driver_control():
         else:
             motor_intake.stop(COAST)
 
+         #Second intake motor
         if controller.buttonR2.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
         elif controller.buttonL2.pressing():
