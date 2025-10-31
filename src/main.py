@@ -94,9 +94,10 @@ def driver_control():
         #Codes for Pneumatics
         if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
-            match_load.open()
-        else:
-            match_load.close()
+            if toggle_state:
+                match_load.open()
+            else:
+                match_load.close()
         last_pressed = controller.buttonX.pressing()
         
          
