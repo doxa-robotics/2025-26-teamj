@@ -78,7 +78,7 @@ def driver_control():
         else:
             motor_intake.stop(COAST)
 
-    wait(20, MSEC)
+        wait(20, MSEC)
 
 
 
