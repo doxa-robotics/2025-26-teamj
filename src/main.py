@@ -63,7 +63,8 @@ def autonomous():
     wait(1000, MSEC)
 
 def driver_control():
-    toggle_state = False 
+    toggle_state = False
+    last_pressed = False
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
@@ -91,11 +92,12 @@ def driver_control():
             motor_intake_2.stop(COAST)
 
         #Codes for Pneumatics
-        if controller.buttonX.pressing():
+        if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
             match_load.open()
         else:
             match_load.close()
+        last_pressed = controller.buttonX.pressing()
         
         wait(300, MSEC)
          
