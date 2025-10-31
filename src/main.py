@@ -63,6 +63,7 @@ def autonomous():
     wait(1000, MSEC)
 
 def driver_control():
+    toggle_state = False 
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
