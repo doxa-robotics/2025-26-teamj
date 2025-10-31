@@ -87,6 +87,14 @@ def driver_control():
         else:
             motor_intake_2.stop(COAST)
 
+        #Codes for Pneumatics (toggle)
+        if controller.buttonX.pressing():
+            Pneumatics.open(True)
+        elif controller.buttonY.pressing():
+            Pneumatics.close(True)
+        
+        wait(20, MSEC)
+
 
         
 
