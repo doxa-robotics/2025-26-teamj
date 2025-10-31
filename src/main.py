@@ -99,11 +99,10 @@ def driver_control():
             match_load.close()
         last_pressed = controller.buttonX.pressing()
         
-        wait(300, MSEC)
          
           
 
-        
+
     
         wait(20, MSEC)
 
