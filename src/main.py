@@ -91,11 +91,11 @@ def driver_control():
 
         #Codes for Pneumatics (toggle)
         if controller.buttonX.pressing():
-            match_load.open(True)
-            match_load_2.close(True)
+            match_load.open
+            match_load_2.close
         elif controller.buttonY.pressing():
-            match_load.close(True)
-            match_load_2.open(True)
+            match_load.close
+            match_load_2.open
         
     
         wait(20, MSEC)
