@@ -33,18 +33,42 @@ left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
 motor_intake_2 = Motor(Ports.PORT7, False)
-match_load = Pneumatics(brain.three_wire_port.b)
+match_load = Pneumatics(brain.three_wire_port.b) 
 
+#Autonomous_2
+brain.screen.clear_screen()
+brain.screen.print("autonomous code")
+    # place automonous code here
+    #needs extra help
+
+all = DriveTrain(left_motors,right_motors)
+all.set_timeout(4000)
+
+def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
+    all.drive_for(direction, distance, MM, velocity, RPM)
+
+move(FORWARD, 100)
 
 
 def autonomous():
+    return
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
     # place automonous code here
     #needs extra help
+    all = DriveTrain(left_motors,right_motors)
+    all.set_timeout(4000)
+
+    def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
+    all.drive_for(direction, distance, MM, velocity, RPM)
+
+    move(FORWARD, 100)
+
+
+    return
     left_motors.spin(FORWARD, 100, PERCENT)
     right_motors.spin(FORWARD, 100, PERCENT)
-    wait(2000, MSEC)
+    wait(1000, MSEC)
 
     motor_intake.spin(FORWARD, 100, PERCENT)
     wait(1000, MSEC)
@@ -75,7 +99,7 @@ def driver_control():
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT)
         
-       
+       #codes from intake motor_1
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL1.pressing():
@@ -83,7 +107,7 @@ def driver_control():
         else:
             motor_intake.stop(COAST)
 
-         #Second intake motor
+         #Second intake motor_2
         if controller.buttonR2.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
         elif controller.buttonL2.pressing():
