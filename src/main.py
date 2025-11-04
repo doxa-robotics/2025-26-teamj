@@ -42,28 +42,23 @@ brain.screen.print("autonomous code")
     #needs extra help
 
 all = DriveTrain(left_motors,right_motors)
-all.set_timeout(4000)
+all.set_timeout(4000) 
 
 def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
     all.drive_for(direction, distance, MM, velocity, RPM)
 
 move(FORWARD, 100)
+move(REVERSE, 100)
 
 
 def autonomous():
-    return
+    
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
     # place automonous code here
     #needs extra help
-    all = DriveTrain(left_motors,right_motors)
-    all.set_timeout(4000)
-
-    def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
-    all.drive_for(direction, distance, MM, velocity, RPM)
-
+   
     move(FORWARD, 100)
-
 
     return
     left_motors.spin(FORWARD, 100, PERCENT)
@@ -84,6 +79,9 @@ def autonomous():
     motor_intake.stop()
     brain.screen.print('Autonomous round done')    
     wait(1000, MSEC)
+
+def auton1():
+    move(FORWARD,100)
 
 def driver_control():
     toggle_state = False
@@ -131,7 +129,7 @@ def driver_control():
     
         wait(20, MSEC)
 
-
+    *
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, autonomous)
