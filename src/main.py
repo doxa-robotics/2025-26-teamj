@@ -33,7 +33,8 @@ left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
 motor_intake_2 = Motor(Ports.PORT7, False)
-match_load = Pneumatics(brain.three_wire_port.b) 
+match_load = Pneumatics(brain.three_wire_port.b)
+gyro = Gyro(brain.three_wire_port.) 
 
 #Autonomous_2
 brain.screen.clear_screen()
@@ -58,7 +59,7 @@ def autonomous():
     # place automonous code here
     #needs extra help
    
-    move(FORWARD, 100)
+    #move(FORWARD, 100)
 
     return
     left_motors.spin(FORWARD, 100, PERCENT)
@@ -129,7 +130,7 @@ def driver_control():
     
         wait(20, MSEC)
 
-    *
+    
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, autonomous)
