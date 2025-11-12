@@ -17,15 +17,14 @@ controller = Controller()
 #One side(either left or right) has to be all false while the other side is all true; so that it doesn't rotate, staying in one spot
 #-for our robot right is false;left is true
 
-#intake PORT14
+
 #1-front, 2-bottom, 3-top
-#right front-11, right bottom 12, right top 13... Left front 3, Left bottom 4, Left top 5)
-motor_left_1 = Motor(Ports.PORT3, True)
-motor_left_2 = Motor(Ports.PORT4, True)
-motor_left_3 = Motor(Ports.PORT5, False)
-motor_right_1 = Motor(Ports.PORT11, False)
-motor_right_2 = Motor(Ports.PORT12, False)
-motor_right_3 = Motor(Ports.PORT13, True)
+motor_left_1 = Motor(Ports.PORT10, True)
+motor_left_2 = Motor(Ports.PORT9, True)
+motor_left_3 = Motor(Ports.PORT8, True)
+motor_right_1 = Motor(Ports.PORT3, False)
+motor_right_2 = Motor(Ports.PORT4, False)
+motor_right_3 = Motor(Ports.PORT5, False)
 
 #creating motor groups
 #match_loa 1 is extend and 2 is retract
