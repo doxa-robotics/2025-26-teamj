@@ -29,13 +29,13 @@ motor_right_3 = Motor(Ports.PORT5, False)
 #match_loa 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
-motor_intake = Motor(Ports.PORT14, True)
+motor_intake = Motor(Ports.PORT6, False)
 motor_intake_2 = Motor(Ports.PORT7, False)
 match_load = Pneumatics(brain.three_wire_port.b)
 
 #Gyro
-inertial = Gyro(Ports.PORT7)
-DriveTrain = SmartDrive(
+inertial = Inertial(Ports.PORT7)
+drivetrain = SmartDrive(
     left_motors,
     right_motors,
     inertial,
@@ -45,26 +45,30 @@ DriveTrain = SmartDrive(
     MM
 )
 
+#def autonomous2():
+    
 #Autonomous_2
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
     # place automonous code here
     #needs extra help
 
-all = DriveTrain(left_motors,right_motors)
-all.set_timeout(4000) 
+#all = DriveTrain(left_motors,right_motors)
+#all.set_timeout(4000) 
 
-def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
-    all.drive_for(direction, distance, MM, velocity, RPM)
+#def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
+#    all.drive_for(direction, distance, MM, velocity, RPM)
 
-move(FORWARD, 100)
-move(REVERSE, 100)
+#move(FORWARD, 100)
+#bmove(REVERSE, 100)
 
 
 def autonomous():
     
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
+
+    
     # place automonous code here
     #needs extra help
    
@@ -90,8 +94,8 @@ def autonomous():
     brain.screen.print('Autonomous round done')    
     wait(1000, MSEC)
 
-def auton1():
-    move(FORWARD,100)
+    def auton1():
+     move(FORWARD,100)
 
 def driver_control():
     toggle_state = False
