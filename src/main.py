@@ -113,9 +113,9 @@ def driver_control():
         
        #codes from intake motor_1
         if controller.buttonR1.pressing():
-            motor_intake.spin(FORWARD, 100, PERCENT)
+            motor_intake.spin(FORWARD, -100, PERCENT)
         elif controller.buttonL1.pressing():
-           motor_intake.spin(FORWARD, -100, PERCENT)
+           motor_intake.spin(FORWARD, 100, PERCENT)
         else:
             motor_intake.stop(COAST)
 
