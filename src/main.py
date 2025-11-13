@@ -16,8 +16,7 @@ controller = Controller()
 #Motors(port: Port, reversed: bool)
 #One side(either left or right) has to be all false while the other side is all true; so that it doesn't rotate, staying in one spot
 #-for our robot right is false;left is true
-
-
+  
 #1-front, 2-bottom, 3-top
 motor_left_1 = Motor(Ports.PORT10, True)
 motor_left_2 = Motor(Ports.PORT9, True)
@@ -33,7 +32,18 @@ right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT14, True)
 motor_intake_2 = Motor(Ports.PORT7, False)
 match_load = Pneumatics(brain.three_wire_port.b)
-gyro = Gyro(brain.three_wire_port.) 
+
+#Gyro
+inertial = Gyro(Ports.PORT7)
+DriveTrain = SmartDrive(
+    left_motors,
+    right_motors,
+    inertial,
+    300,
+    320,
+    320,
+    MM
+)
 
 #Autonomous_2
 brain.screen.clear_screen()
