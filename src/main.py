@@ -18,12 +18,12 @@ controller = Controller()
 #-for our robot right is false;left is true
   
 #1-front, 2-bottom, 3-top
-motor_left_1 = Motor(Ports.PORT10, True)
-motor_left_2 = Motor(Ports.PORT9, True)
-motor_left_3 = Motor(Ports.PORT8, True)
-motor_right_1 = Motor(Ports.PORT3, False)
-motor_right_2 = Motor(Ports.PORT4, False)
-motor_right_3 = Motor(Ports.PORT5, True)
+motor_left_1 = Motor(Ports.PORT10, False)
+motor_left_2 = Motor(Ports.PORT9, False)
+motor_left_3 = Motor(Ports.PORT8, False)
+motor_right_1 = Motor(Ports.PORT3, True)
+motor_right_2 = Motor(Ports.PORT4, True)
+motor_right_3 = Motor(Ports.PORT5, False)
 
 #creating motor groups
 #match_loa 1 is extend and 2 is retract
