@@ -23,7 +23,7 @@ motor_left_2 = Motor(Ports.PORT9, True)
 motor_left_3 = Motor(Ports.PORT8, True)
 motor_right_1 = Motor(Ports.PORT3, False)
 motor_right_2 = Motor(Ports.PORT4, False)
-motor_right_3 = Motor(Ports.PORT5, False)
+motor_right_3 = Motor(Ports.PORT5, True)
 
 #creating motor groups
 #match_loa 1 is extend and 2 is retract
