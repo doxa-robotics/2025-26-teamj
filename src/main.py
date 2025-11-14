@@ -111,13 +111,14 @@ def driver_control():
 
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT)
+        
          #codes from intake motors
         if controller.buttonR1.pressing():
             intake_motors.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL1.pressing():
             intake_motors.spin(FORWARD, -100, PERCENT)
         else:
-            motor_intake.stop(COAST)
+            intake_motors.stop(COAST)
  
        
 
