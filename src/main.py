@@ -29,7 +29,7 @@ motor_right_3 = Motor(Ports.PORT5, False)
 #match_loa 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
-motor_intake = Motor(Ports.PORT6, True)
+motor_intake = Motor(Ports.PORT11, True)
 motor_intake_2 = Motor(Ports.PORT16, False)
 match_load = Pneumatics(brain.three_wire_port.b)
 
@@ -113,7 +113,7 @@ def driver_control():
         
        #codes from intake motor_1
         if controller.buttonR1.pressing():
-            motor_intake.spin(FORWARD, -100, PERCENT)
+            motor_intake.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL1.pressing():
            motor_intake.spin(FORWARD, 100, PERCENT)
         else:
