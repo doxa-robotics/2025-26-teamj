@@ -32,7 +32,7 @@ right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT11, True)
 motor_intake_2 = Motor(Ports.PORT16, True)
 intake_motors = MotorGroup(motor_intake, motor_intake_2)
-match_load = Pneumatics(brain.three_wire_port.b)
+match_load = Pneumatics(brain.three_wire_port.g)
 
 #Gyro
 inertial = Inertial(Ports.PORT7)
@@ -120,16 +120,7 @@ def driver_control():
         else:
             intake_motors.stop(COAST)
  
-       
-
-         #Second intake motor_2
-        #if controller.buttonR1.pressing():
-         #   motor_intake_2.spin(FORWARD, -100, PERCENT)
-        #elif controller.buttonL1.pressing():
-         #   motor_intake_2.spin(FORWARD, 100, PERCENT)
-        #else:
-         #   motor_intake_2.stop(COAST)
-
+    
         #Codes for Pneumatics
         if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
