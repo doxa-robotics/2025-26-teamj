@@ -31,6 +31,7 @@ left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT11, True)
 motor_intake_2 = Motor(Ports.PORT16, False)
+intake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.b)
 
 #Gyro
@@ -110,7 +111,14 @@ def driver_control():
 
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT)
-        
+         #codes from intake motors
+        if controller.buttonR1.pressing():
+            intake_motors.spin(FORWARD, 100, PERCENT)
+        elif controller.buttonL1.pressing():
+            intake_motors.spin(FORWARD, -100, PERCENT)
+        else:
+            motor_intake.stop(COAST)
+ 
        #codes from intake motor_1
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
