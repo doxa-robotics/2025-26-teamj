@@ -114,18 +114,20 @@ def driver_control():
        #codes from intake motor_1
         if controller.buttonR1.pressing():
             motor_intake.spin(FORWARD, 100, PERCENT)
+            motor_intake_2.spin(FORWARD, -100, PERCENT)
         elif controller.buttonL1.pressing():
            motor_intake.spin(FORWARD, -100, PERCENT)
+           motor_intake_2.spin(FORWARD, 100, PERCENT)
         else:
             motor_intake.stop(COAST)
 
          #Second intake motor_2
-        if controller.buttonR1.pressing():
-            motor_intake_2.spin(FORWARD, -100, PERCENT)
-        elif controller.buttonL1.pressing():
-            motor_intake_2.spin(FORWARD, 100, PERCENT)
-        else:
-            motor_intake_2.stop(COAST)
+        #if controller.buttonR1.pressing():
+         #   motor_intake_2.spin(FORWARD, -100, PERCENT)
+        #elif controller.buttonL1.pressing():
+         #   motor_intake_2.spin(FORWARD, 100, PERCENT)
+        #else:
+         #   motor_intake_2.stop(COAST)
 
         #Codes for Pneumatics
         if controller.buttonX.pressing() and last_pressed == False:
