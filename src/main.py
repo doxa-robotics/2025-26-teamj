@@ -70,6 +70,11 @@ def autonomous():
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
 
+    def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
+        all.drive_for(direction, distance, MM, velocity, RPM)
+
+    move(FORWARD, 20)
+
     
     # place automonous code here
     #needs extra help
