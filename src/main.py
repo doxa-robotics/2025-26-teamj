@@ -37,6 +37,7 @@ match_load = Pneumatics(brain.three_wire_port.g)
 
 #Gyro
 inertial = Inertial(Ports.PORT7)
+
 drivetrain = SmartDrive(
     left_motors,
     right_motors,
@@ -58,26 +59,22 @@ brain.screen.print("autonomous code")
 #all = DriveTrain(left_motors,right_motors)
 #all.set_timeout(4000) 
 
-#def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
-#    all.drive_for(direction, distance, MM, velocity, RPM)
 
 #move(FORWARD, 100)
 #bmove(REVERSE, 100)
 
-def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
-        all.drive_for(direction, distance, MM, velocity, RPM)
+#def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
+        #all.drive_for(direction, distance, MM, velocity, RPM)
 
 def autonomous():
     
     brain.screen.clear_screen()
     brain.screen.print("autonomous code")
-    move(FORWARD, 300)
+    drivetrain.drive_for(FORWARD, 500, MM, 75, PERCENT)
+
+
 
     
-    # place automonous code here
-    #needs extra help
-   
-    #move(FORWARD, 100)
 
 
    
@@ -129,7 +126,7 @@ def driver_control():
         wait(20, MSEC)
 
     
-autonomous()
+
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, autonomous)
