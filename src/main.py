@@ -78,22 +78,20 @@ def autonomous():
 
 
    
-
-
+#Driving skill
 def driver_control():
     toggle_state = False
     last_pressed = False
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
-    #Driver_ctrl
+    #Driver_ctrl, can manage the speed depending on how much I tilt the joysticks
     while True:
         speed = controller.axis3.position()
         turn = controller.axis1.position()
 
         left_motors.spin(FORWARD, speed - turn, PERCENT)
-        right_motors.spin(FORWARD, speed + turn, PERCENT)  
-  
+        right_motors.spin(FORWARD, speed + turn, PERCENT) 
         
          #codes from intake motors
         if controller.buttonR1.pressing():
@@ -122,7 +120,7 @@ def driver_control():
          
           
 
-
+ 
     
         wait(20, MSEC)
 
