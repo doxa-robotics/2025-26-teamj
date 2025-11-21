@@ -29,11 +29,11 @@ motor_right_3 = Motor(Ports.PORT5, False)
 #match_loa 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
-motor_intake = Motor(Ports.PORT11, True)
-motor_intake_2 = Motor(Ports.PORT18, True)
-motor_intake_3 = Motor(Ports.PORT17, True)
-intake_motors = MotorGroup(motor_intake, motor_intake_2)
-match_load = Pneumatics(brain.three_wire_port.g)
+motor_intake = Motor(Ports.PORT10, False)
+#motor_intake_2 = Motor(Ports.PORT18, True)
+#motor_intake_3 = Motor(Ports.PORT17, True)
+intake_motors = MotorGroup(motor_intake)
+#match_load = Pneumatics(brain.three_wire_port.g)
 
 #Gyro
 inertial = Inertial(Ports.PORT7)
@@ -100,7 +100,7 @@ def driver_control():
             intake_motors.spin(FORWARD, -100, PERCENT)
         else:
             intake_motors.stop(COAST)
- 
+        '''
         if controller.buttonR2.pressing():
             motor_intake_3.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL2.pressing():
@@ -116,8 +116,7 @@ def driver_control():
             else:
                 match_load.close()
         last_pressed = controller.buttonX.pressing()
-        
-         
+        '''
           
 
  
