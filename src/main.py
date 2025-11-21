@@ -18,9 +18,9 @@ controller = Controller()
 #-for our robot right is false;left is true
   
 #1-front, 2-bottom, 3-top
-motor_left_1 = Motor(Ports.PORT10, False)
-motor_left_2 = Motor(Ports.PORT9, False)
-motor_left_3 = Motor(Ports.PORT8, False)
+motor_left_1 = Motor(Ports.PORT9, False)
+motor_left_2 = Motor(Ports.PORT8, False)
+motor_left_3 = Motor(Ports.PORT7, False)
 motor_right_1 = Motor(Ports.PORT3, True)
 motor_right_2 = Motor(Ports.PORT4, True)
 motor_right_3 = Motor(Ports.PORT5, False)
