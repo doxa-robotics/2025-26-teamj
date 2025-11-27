@@ -53,11 +53,7 @@ drivetrain = SmartDrive(
 #Autonomous_2
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
-    # place automonous code here
-    #needs extra help
-
-#all = DriveTrain(left_motors,right_motors)
-#all.set_timeout(4000) 
+     
 
 
 #move(FORWARD, 100)
@@ -66,14 +62,10 @@ brain.screen.print("autonomous code")
 #def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
         #all.drive_for(direction, distance, MM, velocity, RPM)
 
-def autonomous():
-    
-    brain.screen.clear_screen()
-    brain.screen.print("autonomous code")
-    drivetrain.drive_for(FORWARD, 500, MM, 75, PERCENT)
-
-
-
+def auton_long_goal_right():
+    """Auton"""
+    drivetrain.drive_for(FORWARD, 700 , MM)
+    drivetrain.turn_for(LEFT, 30, DEGREES)
     
 
 
@@ -127,5 +119,5 @@ def driver_control():
 
 
 # Tell VEX what *functions* we want to run when
-Competition(driver_control, autonomous)
+Competition(driver_control, auton_long_goal_right)
 
