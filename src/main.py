@@ -30,7 +30,7 @@ motor_right_3 = Motor(Ports.PORT5, False)
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT10, False)
-#motor_intake_2 = Motor(Ports.PORT18, True)
+motor_intake_2 = Motor(Ports.PORT13, True)
 #motor_intake_3 = Motor(Ports.PORT17, True)
 intake_motors = MotorGroup(motor_intake)
 match_load = Pneumatics(brain.three_wire_port.g)
@@ -77,7 +77,7 @@ def driver_control():
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
-    #Driver_ctrl, can manage the speed depending on how much I tilt the joysticks
+    #Driver_ctrl, can manage the speed depen ding on how much I tilt the joysticks
     while True:
         speed = controller.axis3.position()
         turn = controller.axis1.position()
@@ -92,14 +92,14 @@ def driver_control():
             intake_motors.spin(FORWARD, -100, PERCENT)
         else:
             intake_motors.stop(COAST)
-        '''
+        
         if controller.buttonR2.pressing():
-            motor_intake_3.spin(FORWARD, 100, PERCENT)
+            motor_intake_2.spin(FORWARD, 100, PERCENT)
         elif controller.buttonL2.pressing():
-            motor_intake_3.spin(FORWARD, -100, PERCENT)
+            motor_intake_2.spin(FORWARD, -100, PERCENT)
         else:
-            motor_intake_3.stop(COAST)
-        '''
+            motor_intake_2.stop(COAST)
+        
         #Codes for Pneumatics
         if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
