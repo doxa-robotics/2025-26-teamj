@@ -86,6 +86,8 @@ def auton_long_goal_right():
 def driver_control():
     toggle_state = False
     last_pressed = False
+    toggle_state_2 = False
+    last_pressed_2 = False
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
