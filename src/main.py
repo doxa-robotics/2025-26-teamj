@@ -25,13 +25,12 @@ motor_right_1 = Motor(Ports.PORT3, True)
 motor_right_2 = Motor(Ports.PORT4, True)
 motor_right_3 = Motor(Ports.PORT5, False)
 
-#creating motor groups
-#match_loa 1 is extend and 2 is retract
+
+#match_load 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT10, False)
 motor_intake_2 = Motor(Ports.PORT13, False)
-#motor_intake_3 = Motor(Ports.PORT17, True)
 intake_motors = MotorGroup(motor_intake)
 match_load = Pneumatics(brain.three_wire_port.g)
 
@@ -48,19 +47,12 @@ drivetrain = SmartDrive(
     MM
 )
 
-#def autonomous2():
+
     
 #Autonomous_2
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
      
-
-
-#move(FORWARD, 100)
-#bmove(REVERSE, 100)
-
-#def move(direction: DirectionType.DirectionType, distance: int, velocity=75):
-        #all.drive_for(direction, distance, MM, velocity, RPM)
 
 def auton_long_goal_right():
     """Auton"""
