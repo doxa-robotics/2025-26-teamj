@@ -33,7 +33,7 @@ motor_intake = Motor(Ports.PORT10, False)
 motor_intake_2 = Motor(Ports.PORT13, False)
 intake_motors = MotorGroup(motor_intake)
 match_load = Pneumatics(brain.three_wire_port.d)
-match_load_2 = Pneumatics(brain.three_wire_port.c)
+outtake_launcher = Pneumatics(brain.three_wire_port.c)
 
 #Gyro
 inertial = Inertial(Ports.PORT7)
@@ -121,13 +121,13 @@ def driver_control():
                 match_load.close()
         last_pressed = controller.buttonX.pressing()
         
-        if controller.buttonUp.pressing() and last_pressed == False:
-            toggle_state = not toggle_state
-            if toggle_state:
-                match_load_2.open()
+        if controller.buttonUp.pressing() and last_pressed_2 == False:
+            toggle_state_2 = not toggle_state_2
+            if toggle_state_2:
+                outtake_launcher.open()
             else:
-                match_load_2.close()     
-        last_pressed = controller.buttonUp.pressing()   
+                outtake_launcher.close()     
+        last_pressed_2 = controller.buttonUp.pressing()   
 
  
     
