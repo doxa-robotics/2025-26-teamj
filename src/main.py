@@ -70,10 +70,15 @@ def auton_long_goal_right():
     drivetrain.turn_for(RIGHT, 122, DEGREES)
     drivetrain.drive_for(REVERSE, 280, MM)
     motor_intake_2.spin(FORWARD, 100, PERCENT)
-    drivetrain
+    drivetrain.drive_for(FORWARD, 1280, MM)
+    drivetrain.turn_for(LEFT, 38, DEGREES)
+    intake_motors.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(REVERSE, 640, MM)
+    motor_intake_2.spin(FORWARD, 100, PERCENT )
+    wait(20, MSEC)
     
     
-    drivetrain.turn_for(LEFT, 30, DEGREES)
+
     
 
 
