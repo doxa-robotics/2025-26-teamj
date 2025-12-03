@@ -36,7 +36,7 @@ match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
 
 #Gyro
-inertial = Inertial(Ports.PORT7)
+inertial = Inertial(Ports.PORT15)
 
 drivetrain = SmartDrive(
     left_motors,
@@ -57,26 +57,26 @@ brain.screen.print("autonomous code")
 
 def auton_long_goal_right():
     """Auton"""
-    while True:
-        #1
-        drivetrain.drive_for(FORWARD, 480 , MM)
-        intake_motors.spin(FORWARD, 100, PERCENT)
-        drivetrain.drive_for(FORWARD, 200 , MM)
-        #2
-        drivetrain.turn_for(RIGHT, 122, DEGREES)
-        drivetrain.drive_for(REVERSE, 280, MM)
-        motor_intake_2.spin(FORWARD, 100, PERCENT)
-        drivetrain.drive_for(FORWARD, 1280, MM)
-        #3
-        drivetrain.turn_for(LEFT, 38, DEGREES)
-        intake_motors.spin(FORWARD, 100, PERCENT)
-        drivetrain.drive_for(REVERSE, 640, MM)
-        motor_intake_2.spin(FORWARD, 100, PERCENT)
-        
-        #is this essential
-        print("auton done")
+    #1
+    drivetrain.drive_for(FORWARD, 480 , MM)
+    intake_motors.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(FORWARD, 100, MM)
+    #200->100
+    #2
+    drivetrain.turn_for(RIGHT, 122, DEGREES)
+    drivetrain.drive_for(REVERSE, 280, MM)
+    motor_intake_2.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(FORWARD, 1280, MM)
+    #3
+    drivetrain.turn_for(LEFT, 38, DEGREES)
+    intake_motors.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(REVERSE, 640, MM)
+    motor_intake_2.spin(FORWARD, 100, PERCENT)
+    
+    #is this essential
+    print("auton done")
 
-        wait(20, MSEC)  
+    wait(20, MSEC)  
     
     
 
