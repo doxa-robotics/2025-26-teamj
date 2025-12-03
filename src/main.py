@@ -72,9 +72,11 @@ def auton_long_goal_right():
         intake_motors.spin(FORWARD, 100, PERCENT)
         drivetrain.drive_for(REVERSE, 640, MM)
         motor_intake_2.spin(FORWARD, 100, PERCENT)
-        wait(20, MSEC) 
+        
         #is this essential
         print("auton done")
+
+        wait(20, MSEC)  
     
     
 
@@ -85,20 +87,41 @@ def auton_long_goal_right():
 #Driving skill
 def driver_control():
     toggle_state = False
+    #match load
     last_pressed = False
+    #outtake
     toggle_state_2 = False
     last_pressed_2 = False
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
-    #Driver_ctrl, can manage the speed depen ding on how much I tilt the joysticks
+    #Driver_ctrl, can manage the speed depending on how much I tilt the joysticks
+   
+    def scale_input(x):
+        return (x * abs(x)) / 100
     while True:
         speed = controller.axis3.position()
         turn = controller.axis1.position()
 
+        #exp
+        if -5 < speed < 5:
+            speed = 0
+        if -5 < turn < 5:
+            turn = 0
+
+        forward = scale_input(speed)
+        rotate = scale_input(turn)
+
+        left_speed = forward + rotate
+        right_speed = forward + rotate
+
+        left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
+        right_motors.spin(DirectionType.FORWARD, right_speed, VelocityUnits.PERCENT)
+
+        '''
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT) 
-        
+        '''
          #codes from intake motors
         if controller.buttonR1.pressing():
             intake_motors.spin(FORWARD, 100, PERCENT)
@@ -122,7 +145,7 @@ def driver_control():
             else:
                 match_load.close()
         last_pressed = controller.buttonX.pressing()
-        
+        #Outtake piston 
         if controller.buttonUp.pressing() and last_pressed_2 == False:
             toggle_state_2 = not toggle_state_2
             if toggle_state_2:
