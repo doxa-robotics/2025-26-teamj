@@ -142,17 +142,17 @@ def driver_control():
         if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
             if toggle_state:
-                match_load.close()
-            else:
                 match_load.open()
+            else:
+                match_load.close()
         last_pressed = controller.buttonX.pressing()
         #Outtake piston 
         if controller.buttonUp.pressing() and last_pressed_2 == False:
             toggle_state_2 = not toggle_state_2
             if toggle_state_2:
-                outtake_launcher.close()
+                outtake_launcher.open()
             else:
-                outtake_launcher.open()     
+                outtake_launcher.close()     
         last_pressed_2 = controller.buttonUp.pressing()   
 
  
