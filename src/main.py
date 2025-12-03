@@ -113,10 +113,11 @@ def driver_control():
         rotate = scale_input(turn)
 
         left_speed = forward + rotate
-        right_speed = forward + rotate
+        right_speed = forward - rotate
 
         left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
         right_motors.spin(DirectionType.FORWARD, right_speed, VelocityUnits.PERCENT)
+        
 
         '''
         left_motors.spin(FORWARD, speed - turn, PERCENT)
