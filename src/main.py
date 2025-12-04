@@ -31,7 +31,7 @@ motor_right_3 = Motor(Ports.PORT7, True)
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT10, False)
-motor_intake_2 = Motor(Ports.PORT13, False)
+motor_intake_2 = Motor(Ports.PORT20, False)
 intake_motors = MotorGroup(motor_intake)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
@@ -171,4 +171,7 @@ def driver_control():
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, auton_long_goal_right)
+
+
+
 
