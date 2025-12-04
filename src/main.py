@@ -18,15 +18,16 @@ controller = Controller()
 #-for our robot right is false;left is true
   
 #1-front, 2-bottom, 3-top
-motor_right_1 = Motor(Ports.PORT9, False)
-motor_right_2 = Motor(Ports.PORT8, False)
-motor_right_3 = Motor(Ports.PORT7, True)
 motor_left_1 = Motor(Ports.PORT3, True)
 motor_left_2 = Motor(Ports.PORT4, True)
 motor_left_3 = Motor(Ports.PORT5, False)
+motor_right_1 = Motor(Ports.PORT9, False)
+motor_right_2 = Motor(Ports.PORT8, False)
+motor_right_3 = Motor(Ports.PORT7, True)
 
 
-#match_load 1 is extend and 2 is retract
+
+#for match_load 1 is extend and 2 is retract
 left_motors = MotorGroup(motor_left_1, motor_left_2, motor_left_3)
 right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT10, False)
@@ -35,7 +36,7 @@ intake_motors = MotorGroup(motor_intake)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
 
-#Gyro
+#Gyroscope
 inertial = Inertial(Ports.PORT11)
 
 drivetrain = SmartDrive(
@@ -50,7 +51,7 @@ drivetrain = SmartDrive(
 
 
     
-#Autonomous_2
+#Autonomous
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
      
@@ -76,7 +77,7 @@ def auton_long_goal_right():
     intake_motors.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(REVERSE, 640, MM)
     motor_intake_2.spin(FORWARD, 100, PERCENT)
-    
+
     #is this essential
     print("auton done")
 
@@ -127,6 +128,7 @@ def driver_control():
         left_motors.spin(FORWARD, speed - turn, PERCENT)
         right_motors.spin(FORWARD, speed + turn, PERCENT) 
         '''
+
          #codes from intake motors
         if controller.buttonR1.pressing():
             intake_motors.spin(FORWARD, 100, PERCENT)
@@ -150,6 +152,7 @@ def driver_control():
             else:
                 match_load.close()
         last_pressed = controller.buttonX.pressing()
+       
         #Outtake piston 
         if controller.buttonUp.pressing() and last_pressed_2 == False:
             toggle_state_2 = not toggle_state_2
