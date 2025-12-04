@@ -36,7 +36,7 @@ match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
 
 #Gyro
-inertial = Inertial(Ports.PORT15)
+inertial = Inertial(Ports.PORT11)
 
 drivetrain = SmartDrive(
     left_motors,
