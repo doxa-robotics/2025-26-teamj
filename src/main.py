@@ -18,12 +18,12 @@ controller = Controller()
 #-for our robot right is false;left is true
   
 #1-front, 2-bottom, 3-top
-motor_left_1 = Motor(Ports.PORT9, False)
-motor_left_2 = Motor(Ports.PORT8, False)
-motor_left_3 = Motor(Ports.PORT7, True)
-motor_right_1 = Motor(Ports.PORT3, True)
-motor_right_2 = Motor(Ports.PORT4, True)
-motor_right_3 = Motor(Ports.PORT5, False)
+motor_left_1 = Motor(Ports.PORT9, True)
+motor_left_2 = Motor(Ports.PORT8, True)
+motor_left_3 = Motor(Ports.PORT7, False)
+motor_right_1 = Motor(Ports.PORT3, False)
+motor_right_2 = Motor(Ports.PORT4, False)
+motor_right_3 = Motor(Ports.PORT5, True)
 
 
 #match_load 1 is extend and 2 is retract
@@ -112,8 +112,8 @@ def driver_control():
         forward = scale_input(speed)
         rotate = scale_input(turn)
 
-        left_speed = forward - rotate
-        right_speed = forward + rotate
+        left_speed = forward + rotate
+        right_speed = forward - rotate
 
         left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
         right_motors.spin(DirectionType.FORWARD, right_speed, VelocityUnits.PERCENT)
