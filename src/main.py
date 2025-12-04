@@ -57,16 +57,20 @@ brain.screen.print("autonomous code")
 
 def auton_long_goal_right():
     """Auton"""
-    #1
-    drivetrain.drive_for(FORWARD, 480 , MM)
-    intake_motors.spin(FORWARD, 100, PERCENT)
-    drivetrain.drive_for(FORWARD, 100, MM)
+    #1   
+    #intake_motors.spin(FORWARD, 300, PERCENT)
+    #drivetrain.drive_for(FORWARD, 480 , MM)
+    #drivetrain.drive_for(FORWARD, 100, MM)
+    intake_motors.spin(FORWARD, 300, PERCENT)
+    drivetrain.drive_for(FORWARD, 580, MM)
+    wait(50, MSEC)
     #200->100
     #2
     drivetrain.turn_for(RIGHT, 122, DEGREES)
     drivetrain.drive_for(REVERSE, 280, MM)
     motor_intake_2.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 1280, MM)
+    wait(50, MSEC)
     #3
     drivetrain.turn_for(LEFT, 38, DEGREES)
     intake_motors.spin(FORWARD, 100, PERCENT)
