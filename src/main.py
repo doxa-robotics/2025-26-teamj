@@ -63,13 +63,13 @@ def auton_long_goal_right():
     #drivetrain.drive_for(FORWARD, 480 , MM)
     #drivetrain.drive_for(FORWARD, 100, MM)
     intake_motors.spin(FORWARD, 300, PERCENT)
-    drivetrain.drive_for(FORWARD, 580, MM)
-    wait(50, MSEC)
+    drivetrain.drive_for(FORWARD, 550, MM)
     #200->100
     #2
-    drivetrain.turn_for(RIGHT, 122, DEGREES)            
+    drivetrain.turn_for(RIGHT, 112, DEGREES)            
     drivetrain.drive_for(REVERSE, 280, MM)
     motor_intake_2.spin(FORWARD, 100, PERCENT)
+    wait(50, MSEC)
     drivetrain.drive_for(FORWARD, 1280, MM)
     wait(50, MSEC)
     #3
