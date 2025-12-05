@@ -67,7 +67,7 @@ def auton_long_goal_right():
     wait(50, MSEC)
     #200->100
     #2
-    drivetrain.turn_for(RIGHT, 122, DEGREES)
+    drivetrain.turn_for(RIGHT, 122, DEGREES)            
     drivetrain.drive_for(REVERSE, 280, MM)
     motor_intake_2.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 1280, MM)
@@ -171,6 +171,7 @@ def driver_control():
 
 # Tell VEX what *functions* we want to run when
 Competition(driver_control, auton_long_goal_right)
+
 
 
 
