@@ -33,6 +33,7 @@ right_motors = MotorGroup(motor_right_1, motor_right_2, motor_right_3)
 motor_intake = Motor(Ports.PORT10, False)
 motor_intake_2 = Motor(Ports.PORT20, False)
 intake_motors = MotorGroup(motor_intake)
+intake_outtake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
 
@@ -62,15 +63,48 @@ def auton_long_goal_right():
     #intake_motors.spin(FORWARD, 300, PERCENT)
     #drivetrain.drive_for(FORWARD, 480 , MM)
     #drivetrain.drive_for(FORWARD, 100, MM)
+    intake_motors.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(FORWARD, 528, MM)
+    wait(100, MSEC) 
+    intake_motors.stop()
+    #2
+    drivetrain.turn_for(LEFT, 103, DEGREES)            
+    drivetrain.drive_for(REVERSE, 280, MM)
+    intake_outtake_motors.spin(FORWARD, 100, PERCENT)
+    wait(4000, MSEC)
+    intake_outtake_motors.stop()
+    drivetrain.drive_for(FORWARD, 1180, MM)
+    wait(50, MSEC)
+    #3
+    drivetrain.turn_for(RIGHT, 142, DEGREES)
+    match_load.open(  )
+    intake_motors.spin(FORWARD, 100, PERCENT)
+    wait(500, MSEC)
+    drivetrain.drive_for(REVERSE, 640, MM)
+    motor_intake_2.spin(FORWARD, 100, PERCENT)
+    wait(100, MSEC)
+    match_load.close()
+    motor_intake_2.stop()
+    #is this essential
+    print("auton done")
+
+    wait(20, MSEC)  
+    
+    '''
+     #1   
+    #intake_motors.spin(FORWARD, 300, PERCENT)
+    #drivetrain.drive_for(FORWARD, 480 , MM)
+    #drivetrain.drive_for(FORWARD, 100, MM)
     intake_motors.spin(FORWARD, 300, PERCENT)
-    drivetrain.drive_for(FORWARD, 550, MM)
+    drivetrain.drive_for(FORWARD, 535, MM)
     #200->100
     #2
     drivetrain.turn_for(RIGHT, 112, DEGREES)            
-    drivetrain.drive_for(REVERSE, 280, MM)
-    motor_intake_2.spin(FORWARD, 100, PERCENT)
+    drivetrain.drive_for(REVERSE, 325, MM)
+    motor_intake_2.spin(FORWARD, 200, PERCENT)
     wait(50, MSEC)
-    drivetrain.drive_for(FORWARD, 1280, MM)
+    wait(500, MSEC)
+    drivetrain.drive_for(FORWARD, 1180, MM)
     wait(50, MSEC)
     #3
     drivetrain.turn_for(LEFT, 38, DEGREES)
@@ -83,7 +117,7 @@ def auton_long_goal_right():
 
     wait(20, MSEC)  
     
-    
+    '''
 
     
 
