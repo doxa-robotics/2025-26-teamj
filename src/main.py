@@ -66,20 +66,21 @@ def auton_long_goal_right():
     intake_motors.stop()
     #2: Put balls in the upper goal
     drivetrain.turn_for(LEFT, 103, DEGREES)            
-    drivetrain.drive_for(REVERSE, 240, MM)
+    drivetrain.drive_for(REVERSE, 230, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
-    wait(2000, MSEC)
+    wait(1500, MSEC)
     intake_outtake_motors.stop()
     wait(50, MSEC)
     #3: Go to ball pillar
     drivetrain.turn_for(LEFT, 17, DEGREES)
-    drivetrain.drive_for(FORWARD, 1000, MM)
+    drivetrain.drive_for(FORWARD, 850, MM)
     wait(50, MSEC)
     #4: Matchload, take 3 balls
-    drivetrain.turn_for(RIGHT, 142, DEGREES)
+    drivetrain.turn_for(LEFT, 38, DEGREES)
     match_load.open()
+    drivetrain.drive_for(FORWARD, 150, MM)
     intake_motors.spin(FORWARD, 100, PERCENT)
-    wait(100, MSEC)
+    wait(1500, MSEC)
     intake_motors.stop()
     #5: Go to the long goal, put 3 balls in.
     drivetrain.drive_for(REVERSE, 640, MM)
@@ -91,35 +92,7 @@ def auton_long_goal_right():
     print("auton done")
 
     wait(20, MSEC)  
-    
-    '''
-     #1   
-    #intake_motors.spin(FORWARD, 300, PERCENT)
-    #drivetrain.drive_for(FORWARD, 480 , MM)
-    #drivetrain.drive_for(FORWARD, 100, MM)
-    intake_motors.spin(FORWARD, 300, PERCENT)
-    drivetrain.drive_for(FORWARD, 535, MM)
-    #200->100
-    #2
-    drivetrain.turn_for(RIGHT, 112, DEGREES)            
-    drivetrain.drive_for(REVERSE, 325, MM)
-    motor_intake_2.spin(FORWARD, 200, PERCENT)
-    wait(50, MSEC)
-    wait(500, MSEC)
-    drivetrain.drive_for(FORWARD, 1180, MM)
-    wait(50, MSEC)
-    #3
-    drivetrain.turn_for(LEFT, 38, DEGREES)
-    intake_motors.spin(FORWARD, 100, PERCENT)
-    drivetrain.drive_for(REVERSE, 640, MM)
-    motor_intake_2.spin(FORWARD, 100, PERCENT)
 
-    #is this essential
-    print("auton done")
-
-    wait(20, MSEC)  
-    
-    '''
 
     
 
@@ -156,7 +129,7 @@ def driver_control():
         turn = controller.axis1.position()
 
         #exp
-        if -5 < speed < 5:
+        if -5 < speed < 5   :
             speed = 0
         if -5 < turn < 5:
             turn = 0
