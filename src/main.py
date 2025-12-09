@@ -59,33 +59,35 @@ brain.screen.print("autonomous code")
 
 def auton_long_goal_right():
     """Auton"""
-    #1: 
+    #1: Take 3 balls
     intake_motors.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 528, MM)
     wait(50, MSEC) 
     intake_motors.stop()
-    #2
+    #2: Put balls in the upper goal
     drivetrain.turn_for(LEFT, 103, DEGREES)            
     drivetrain.drive_for(REVERSE, 240, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
     wait(2000, MSEC)
     intake_outtake_motors.stop()
     wait(50, MSEC)
+    #3: Go to ball pillar
     drivetrain.turn_for(LEFT, 17, DEGREES)
     drivetrain.drive_for(FORWARD, 1000, MM)
     wait(50, MSEC)
-    #3
+    #4: Matchload, take 3 balls
     drivetrain.turn_for(RIGHT, 142, DEGREES)
     match_load.open()
     intake_motors.spin(FORWARD, 100, PERCENT)
     wait(100, MSEC)
     intake_motors.stop()
+    #5: Go to the long goal, put 3 balls in.
     drivetrain.drive_for(REVERSE, 640, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
     wait(1500, MSEC)
     match_load.close()
     intake_outtake_motors.stop()
-    #is this essential
+    #Done
     print("auton done")
 
     wait(20, MSEC)  
