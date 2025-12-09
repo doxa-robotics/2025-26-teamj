@@ -59,10 +59,7 @@ brain.screen.print("autonomous code")
 
 def auton_long_goal_right():
     """Auton"""
-    #1   
-    #intake_motors.spin(FORWARD, 300, PERCENT)
-    #drivetrain.drive_for(FORWARD, 480 , MM)
-    #drivetrain.drive_for(FORWARD, 100, MM)
+    #1: 
     intake_motors.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 528, MM)
     wait(50, MSEC) 
@@ -134,6 +131,8 @@ def driver_control():
     #outtake
     toggle_state_2 = False
     last_pressed_2 = False
+    left_actual = 0
+    right_actual = 0
     brain.screen.clear_screen()
     brain.screen.print("driver control")
     # place driver control in this while loop
@@ -141,6 +140,15 @@ def driver_control():
    
     def scale_input(x):
         return (x * abs(x)) / 100
+    
+    def fast_rate_limit(current_speed, target_speed, step=5):
+        if target_speed > current_speed + step:
+            return current_speed + step
+        elif target_speed < current_speed - step:
+            return current_speed - step
+        else:
+            return target_speed
+        
     while True:
         speed = controller.axis3.position()
         turn = controller.axis1.position()
@@ -157,13 +165,17 @@ def driver_control():
         left_speed = forward + rotate
         right_speed = forward - rotate
 
-        left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
-        right_motors.spin(DirectionType.FORWARD, right_speed, VelocityUnits.PERCENT)
-        
+        left_actual = fast_rate_limit(left_actual, left_speed, step=5)
+        right_actual = fast_rate_limit(right_actual, right_speed, step=5)
+
+        left_motors.spin(DirectionType.FORWARD, left_actual, VelocityUnits.PERCENT)
+        right_motors.spin(DirectionType.FORWARD, right_actual, VelocityUnits.PERCENT)
+
+
 
         '''
-        left_motors.spin(FORWARD, speed - turn, PERCENT)
-        right_motors.spin(FORWARD, speed + turn, PERCENT) 
+        left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
+        right_motors.spin(DirectionType.FORWARD, right_speed, VelocityUnits.PERCENT)
         '''
 
          #codes from intake motors
