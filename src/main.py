@@ -59,7 +59,7 @@ brain.screen.print("autonomous code")
 
 def auton_long_goal_right():
     """Auton"""
-    drivetrain.set_drive_velocity(75, RPM)
+    drivetrain.set_drive_velocity(77, RPM)
     #1: Take 3 balls
     intake_motors.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 528, MM)
@@ -67,13 +67,13 @@ def auton_long_goal_right():
     intake_motors.stop()
     #2: Put balls in the upper goal
     drivetrain.turn_for(LEFT, 103, DEGREES)            
-    drivetrain.drive_for(REVERSE, 230, MM)
+    drivetrain.drive_for(REVERSE, 215, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
-    wait(1600, MSEC)
+    wait(1200, MSEC)
     intake_outtake_motors.stop()
     wait(50, MSEC)
     #3: Go to ball pillar
-    drivetrain.set_drive_velocity(74, RPM)
+    drivetrain.set_drive_velocity(90, RPM)
     match_load.open()  
     drivetrain.turn_for(LEFT, 17, DEGREES)
     drivetrain.drive_for(FORWARD, 850, MM)
@@ -83,14 +83,14 @@ def auton_long_goal_right():
     drivetrain.set_drive_velocity(100, RPM)
     drivetrain.turn_for(LEFT, 38, DEGREES)
     #match_load.open()
-    intake_motors.spin(FORWARD, 100, PERCENT)
+    intake_motors.spin(FORWARD, 150, PERCENT)
     drivetrain.set_drive_velocity(50,RPM)
-    drivetrain.drive_for(FORWARD, 300, MM)
-    wait(1500, MSEC)
+    drivetrain.drive_for(FORWARD, 160, MM)
+    wait(1000, MSEC)
     intake_motors.stop()
     #5: Go to the long goal, put 3 balls in.
-    drivetrain.set_drive_velocity(85, RPM)
-    drivetrain.drive_for(REVERSE, 655, MM)
+    drivetrain.set_drive_velocity(80, RPM)
+    drivetrain.drive_for(REVERSE, 475, MM)
     #outtake_launcher.open()
     intake_outtake_motors.spin(FORWARD, 150, PERCENT)
     wait(1500, MSEC)
