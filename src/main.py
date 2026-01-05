@@ -36,6 +36,7 @@ intake_motors = MotorGroup(motor_intake)
 intake_outtake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
+wing = Pneumatics(brain.three_wire_port.a)
 
 #Gyroscope
 inertial = Inertial(Ports.PORT11)
@@ -140,7 +141,7 @@ def driver_control():
         #exp
         if -5 < speed < 5   :
             speed = 0
-        if -5 < turn < 5:
+        if -3 < turn < 3:
             turn = 0
 
         forward = scale_input(speed)
@@ -165,14 +166,14 @@ def driver_control():
          #codes from intake motors
         if controller.buttonR1.pressing():
             intake_motors.spin(FORWARD, 100, PERCENT)
-        elif controller.buttonL1.pressing():
+        elif controller.buttonR2.pressing():
             intake_motors.spin(FORWARD, -100, PERCENT)
         else:
             intake_motors.stop(COAST)
         
-        if controller.buttonY.pressing():
+        if controller.buttonL2.pressing():
             motor_intake_2.spin(FORWARD, 100, PERCENT)
-        elif controller.buttonRight.pressing():
+        elif controller.buttonL1.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
         else:
             motor_intake_2.stop(COAST)
