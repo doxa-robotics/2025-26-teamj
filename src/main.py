@@ -116,6 +116,10 @@ def driver_control():
     #outtake
     toggle_state_2 = False
     last_pressed_2 = False
+    #wing
+    toggle_stage_3 = False
+    last_pressed_3 = False
+    #Drive
     left_actual = 0
     right_actual = 0
     brain.screen.clear_screen()
@@ -194,9 +198,16 @@ def driver_control():
                 outtake_launcher.open()
             else:
                 outtake_launcher.close()     
-        last_pressed_2 = controller.buttonUp.pressing()   
+        last_pressed_2 = controller.buttonUp.pressing()  
 
- 
+        #wing
+        if controller.buttonA.pressing() and last_pressed_3 == False:
+            toggle_stage_3 = not toggle_stage_3
+            if toggle_stage_3:
+                wing.open()
+            else:
+                wing.close()
+        last_pressed_3 = controller.buttonA.pressing()
     
         wait(20, MSEC)
 
