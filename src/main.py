@@ -115,9 +115,9 @@ def auton_long_goal_left():
     drivetrain.turn_for(LEFT, 77, DEGREES)  
     ###################i worked till here          
     drivetrain.drive_for(REVERSE, 199, MM)
-    intake_outtake_motors.spin(FORWARD, 100, PERCENT)
+    intake_motors.spin(FORWARD, 100, PERCENT)
     wait(1200, MSEC)
-    intake_outtake_motors.stop()
+    intake_motors.stop()
     wait(50, MSEC)
     #3: Go to ball pillar
     drivetrain.set_drive_velocity(90, RPM)
@@ -128,7 +128,7 @@ def auton_long_goal_left():
     outtake_launcher.open() 
     #4: Matchload, take 3 balls
     drivetrain.set_drive_velocity(100, RPM)
-    drivetrain.turn_for(LEFT, 38, DEGREES)
+    drivetrain.turn_for(LEFT, 142, DEGREES)
     #match_load.open()
     intake_motors.spin(FORWARD, 150, PERCENT)
     drivetrain.set_drive_velocity(50,RPM)
@@ -152,6 +152,8 @@ def auton_long_goal_left():
    
 #Driving skill
 def driver_control():
+   #x axis
+   
     toggle_state = False
     #match load
     last_pressed = False
