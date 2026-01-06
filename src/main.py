@@ -64,20 +64,20 @@ def auton_long_goal_right():
     #1: Take 3 balls
     intake_motors.spin(FORWARD, 100, PERCENT)
     drivetrain.drive_for(FORWARD, 528, MM)
-    wait(500, MSEC) 
+    wait(400, MSEC) 
     intake_motors.stop()
     #2: Put balls in the upper goal
     drivetrain.turn_for(LEFT, 103, DEGREES)            
-    drivetrain.drive_for(REVERSE, 199, MM)
+    drivetrain.drive_for(REVERSE, 185, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
-    wait(1200, MSEC)
+    wait(700, MSEC)
     intake_outtake_motors.stop()
     wait(50, MSEC)
     #3: Go to ball pillar
     drivetrain.set_drive_velocity(90, RPM)
     match_load.open()  
     drivetrain.turn_for(LEFT, 17, DEGREES)
-    drivetrain.drive_for(FORWARD, 830, MM)
+    drivetrain.drive_for(FORWARD, 800, MM)
     wait(50, MSEC)
     outtake_launcher.open() 
     #4: Matchload, take 3 balls
@@ -86,15 +86,15 @@ def auton_long_goal_right():
     #match_load.open()
     intake_motors.spin(FORWARD, 150, PERCENT)
     drivetrain.set_drive_velocity(50,RPM)
-    drivetrain.drive_for(FORWARD, 173, MM)
-    wait(1000, MSEC)
+    drivetrain.drive_for(FORWARD, 215, MM)
+    wait(400, MSEC)
     intake_motors.stop()
     #5: Go to the long goal, put 3 balls in.
     drivetrain.set_drive_velocity(80, RPM)
-    drivetrain.drive_for(REVERSE, 475, MM)
+    drivetrain.drive_for(REVERSE, 465, MM)
     #outtake_launcher.open()
     intake_outtake_motors.spin(FORWARD, 150, PERCENT)
-    wait(1500, MSEC)
+    wait(1300, MSEC)
     match_load.close()
     outtake_launcher.close()
     intake_outtake_motors.stop()
@@ -103,6 +103,7 @@ def auton_long_goal_right():
 
     wait(20, MSEC)  
 
+    '''
 def auton_long_goal_left():
     """auton2"""
     drivetrain.set_drive_velocity(77, RPM)
@@ -146,7 +147,7 @@ def auton_long_goal_left():
     intake_outtake_motors.stop()
     #Done
     print("auton done")
-    
+    '''
 
 
    
@@ -183,28 +184,28 @@ def driver_control():
             return target_speed
         
     while True:
-        speed = controller.axis3.position()
-        turn = controller.axis1.position()
+        speed = controller.axis3.position() *0.7
+        turn = controller.axis1.position()  *0.7
 
         #exp
         if -5 < speed < 5   :
             speed = 0
-        if -3 < turn < 3:
+        if -5 < turn < 5:
             turn = 0
 
-        forward = scale_input(speed)
-        rotate = scale_input(turn)
+        forward = scale_input(speed) 
+        rotate = scale_input(turn) 
 
         left_speed = forward + rotate
         right_speed = forward - rotate
 
-        left_actual = fast_rate_limit(left_actual, left_speed, step=5)
-        right_actual = fast_rate_limit(right_actual, right_speed, step=5)
+        left_actual = fast_rate_limit(left_actual, left_speed, step=5) 
+        right_actual = fast_rate_limit(right_actual, right_speed, step=5) 
 
         left_motors.spin(DirectionType.FORWARD, left_actual, VelocityUnits.PERCENT)
         right_motors.spin(DirectionType.FORWARD, right_actual, VelocityUnits.PERCENT)
 
-
+          
 
         '''
         left_motors.spin(DirectionType.FORWARD, left_speed, VelocityUnits.PERCENT)
@@ -219,14 +220,14 @@ def driver_control():
         else:
             intake_motors.stop(COAST)
         
-        if controller.buttonL2.pressing():
+        if controller.buttonL1.pressing():
             motor_intake_2.spin(FORWARD, 100, PERCENT)
-        elif controller.buttonL1.pressing():
+        elif controller.buttonL2.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
         else:
             motor_intake_2.stop(COAST)
         
-        #Codes for Pneumatics
+        #Codes for Pneumatics, matchload
         if controller.buttonX.pressing() and last_pressed == False:
             toggle_state = not toggle_state
             if toggle_state:
