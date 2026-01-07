@@ -103,7 +103,7 @@ def auton_long_goal_right():
 
     wait(20, MSEC)  
 
-    '''
+    
 def auton_long_goal_left():
     """auton2"""
     drivetrain.set_drive_velocity(77, RPM)
@@ -147,7 +147,34 @@ def auton_long_goal_left():
     intake_outtake_motors.stop()
     #Done
     print("auton done")
-    '''
+    
+
+def auton_long_goal_lower_right():
+    """Auton Lower goal"""
+    drivetrain.set_drive_velocity(100)
+    drivetrain.drive_for(FORWARD, 640, MM)
+    drivetrain.turn_for(LEFT, 90, DEGREES)
+    intake_motors.spin(FORWARD, 150, PERCENT)
+    drivetrain.drive_for(FORWARD, 840, MM)
+    wait(50, MSEC)
+    intake_motors.stop()
+    intake_motors.spin(REVERSE, 150, PERCENT)
+    wait(300, MSEC)
+    intake_motors.stop()
+    drivetrain.drive_for(REVERSE, 1160, MM)
+    match_load.open()
+    intake_motors.spin(FORWARD, 150, PERCENT)
+    drivetrain.turn_for(LEFT, 135, DEGREES)
+    drivetrain.drive_for(FORWARD, 240, MM)
+    wait(500, MSEC)
+    intake_motors.stop()
+    outtake_launcher.open()
+    drivetrain.drive_for(REVERSE, 600, MM)
+    intake_outtake_motors.spin(FORWARD, 150, PERCENT)
+    wait(1000, MSEC)
+    intake_outtake_motors.stop()
+    #DONE
+
 
 
    
@@ -260,8 +287,7 @@ def driver_control():
 
 
 # Tell VEX what *functions* we want to run when
-Competition(driver_control, auton_long_goal_right)
-
+Competition(driver_control, auton_long_goal_lower_right)
 
 
 
