@@ -211,8 +211,8 @@ def driver_control():
             return target_speed
         
     while True:
-        speed = controller.axis3.position() *0.7
-        turn = controller.axis1.position()  *0.7
+        speed = controller.axis3.position() *0.9
+        turn = controller.axis1.position()  *0.9
 
         #exp
         if -5 < speed < 5   :
