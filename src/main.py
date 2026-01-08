@@ -82,7 +82,7 @@ def auton_long_goal_right():
     outtake_launcher.open() 
     #4: Matchload, take 3 balls
     drivetrain.set_drive_velocity(100, RPM)
-    drivetrain.turn_for(LEFT, 38, DEGREES)
+    drivetrain.turn_for(LEFT, 50, DEGREES)
     #match_load.open()
     intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.set_drive_velocity(50,RPM)
@@ -91,7 +91,7 @@ def auton_long_goal_right():
     intake_motors.stop()
     #5: Go to the long goal, put 3 balls in.
     drivetrain.set_drive_velocity(80, RPM)
-    drivetrain.drive_for(REVERSE, 440, MM)
+    drivetrain.drive_for(REVERSE, 450, MM)
     #outtake_launcher.open()
     intake_outtake_motors.spin(FORWARD, 150, PERCENT)
     wait(1300, MSEC)
