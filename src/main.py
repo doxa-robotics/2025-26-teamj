@@ -58,34 +58,36 @@ brain.screen.clear_screen()
 brain.screen.print("autonomous code")
      
 def auton_only_long_goal_right():
-    '''
-    drivetrain.set_drive_velocity(100, RPM)
+
+    drivetrain.set_drive_velocity(110, RPM)
     drivetrain.drive_for(FORWARD, 550, MM)
     match_load.open()
-    intake_motors.spin(FORWARD, 100, PERCENT)
+    intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.turn_for(LEFT, 90, DEGREES)
-    drivetrain.drive_for(FORWARD, 230, MM)
+    drivetrain.drive_for(FORWARD, 235, MM)
     wait(800, MSEC)
-    intake_motors.stop()
     outtake_launcher.open()
-    drivetrain.drive_for(REVERSE, 250, MM)
-    drivetrain.turn_for(LEFT, 8, DEGREES)
-    drivetrain.drive_for(REVERSE, 260, MM)
+    intake_motors.stop()
+    drivetrain.drive_for(REVERSE, 485, MM)
+    #drivetrain.drive_for(REVERSE, 260, MM)
     match_load.close()
-    intake_outtake_motors.spin(FORWARD, 100, PERCENT)
-    wait(1000, MSEC)
+    intake_outtake_motors.spin(FORWARD, 200, PERCENT)
+    wait(1600, MSEC)
     intake_outtake_motors.stop()
-    '''
+    ####
+    drivetrain.set_drive_velocity(110, RPM)
     drivetrain.drive_for(FORWARD, 230, MM)
     drivetrain.turn_for(LEFT, 135, DEGREES)
-    intake_motors.spin(FORWARD, 100, PERCENT)
+    intake_motors.spin(FORWARD, 200, PERCENT)
+    outtake_launcher.close()
     drivetrain.drive_for(FORWARD, 560, MM)
     drivetrain.turn_for(LEFT, 180, DEGREES)
-    drivetrain.drive_for(REVERSE, 205, MM)
+    drivetrain.drive_for(REVERSE, 190, MM)
     intake_outtake_motors.spin(FORWARD, 100, PERCENT)
-    wait(1000, MSEC)
+    wait(2000, MSEC)
+    intake_motors.stop()
     intake_outtake_motors.stop()
-    
+    #Done
 
 
 def auton_long_goal_right():
