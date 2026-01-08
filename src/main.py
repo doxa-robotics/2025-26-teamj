@@ -173,108 +173,104 @@ def auton_long_goal_lower_right():
     intake_outtake_motors.stop()
     #DONE
 
-
-
-   
-#Driving skill
 def driver_control():
-#x axis
-toggle_state = False
-#match load
-last_pressed = False
-#outtake
-toggle_state_2 = False
-last_pressed_2 = False
-#wing
-toggle_stage_3 = False
-last_pressed_3 = False
-#Drive
-left_actual = 0
-right_actual = 0
-brain.screen.clear_screen()
-brain.screen.print("driver control")
-# place driver control in this while loop
-#Driver_ctrl, can manage the speed depending on how much I tilt the joysticks
-#####################################################
-
-def scale_input(x):
-        return (x * abs(x)) / 100
-    
-def fast_rate_limit(current_speed, target_speed, step=5):
-        if target_speed > current_speed + step:
-            return current_speed + step
-        elif target_speed < current_speed - step:
-            return current_speed - step
-        else:
-            return target_speed
-        
-while True:
-    speed = controller.axis3.position() *0.9
-    turn = controller.axis1.position()  *0.9
-
-    #exp
-    if -5 < speed < 5   :
-        speed = 0
-    if -5 < turn < 5:
-        turn = 0
-
-    forward = scale_input(speed) 
-    rotate = scale_input(turn) 
-
-    left_speed = forward + rotate
-    right_speed = forward - rotate
-
-    left_actual = fast_rate_limit(left_actual, left_speed, step=5) 
-    right_actual = fast_rate_limit(right_actual, right_speed, step=5) 
-
-    left_motors.spin(DirectionType.FORWARD, left_actual, VelocityUnits.PERCENT)
-    right_motors.spin(DirectionType.FORWARD, right_actual, VelocityUnits.PERCENT)
-
-        #intake motors
-    if controller.buttonR1.pressing():
-        intake_motors.spin(FORWARD, 100, PERCENT)
-    elif controller.buttonR2.pressing():
-        intake_motors.spin(FORWARD, -100, PERCENT)
-    else:
-        intake_motors.stop(COAST)
-    
-    if controller.buttonL1.pressing():
-        motor_intake_2.spin(FORWARD, 100, PERCENT)
-    elif controller.buttonL2.pressing():
-        motor_intake_2.spin(FORWARD, -100, PERCENT)
-    else:
-        motor_intake_2.stop(COAST)
-    
-    #Codes for Pneumatics, matchload
-    if controller.buttonX.pressing() and last_pressed == False:
-        toggle_state = not toggle_state
-        if toggle_state:
-            match_load.open()
-        else:
-            match_load.close()
-    last_pressed = controller.buttonX.pressing()
-    
-    #Outtake piston 
-    if controller.buttonUp.pressing() and last_pressed_2 == False:
-        toggle_state_2 = not toggle_state_2
-        if toggle_state_2:
-            outtake_launcher.open()
-        else:
-            outtake_launcher.close()     
-    last_pressed_2 = controller.buttonUp.pressing()  
-
+    #x axis
+    toggle_state = False
+    #match load
+    last_pressed = False
+    #outtake
+    toggle_state_2 = False
+    last_pressed_2 = False
     #wing
-    if controller.buttonA.pressing() and last_pressed_3 == False:
-        toggle_stage_3 = not toggle_stage_3
-        if toggle_stage_3:
-            wing.open()
-        else:
-            wing.close()
-    last_pressed_3 = controller.buttonA.pressing()
+    toggle_stage_3 = False
+    last_pressed_3 = False
+    #Drive
+    left_actual = 0
+    right_actual = 0
+    brain.screen.clear_screen()
+    brain.screen.print("driver control")
+    # place driver control in this while loop
+    #Driver_ctrl, can manage the speed depending on how much I tilt the joysticks
+    #####################################################
 
-    wait(20, MSEC)
-    # Tell VEX what *functions* we want to run when
-    Competition(driver_control, auton_long_goal_right)
+    def scale_input(x):
+            return (x * abs(x)) / 100
+        
+    def fast_rate_limit(current_speed, target_speed, step=5):
+            if target_speed > current_speed + step:
+                return current_speed + step
+            elif target_speed < current_speed - step:
+                return current_speed - step
+            else:
+                return target_speed
+            
+    while True:
+        speed = controller.axis3.position() *0.9
+        turn = controller.axis1.position()  *0.9
+
+        #exp
+        if -5 < speed < 5   :
+            speed = 0
+        if -5 < turn < 5:
+            turn = 0
+
+        forward = scale_input(speed) 
+        rotate = scale_input(turn) 
+
+        left_speed = forward + rotate
+        right_speed = forward - rotate
+
+        left_actual = fast_rate_limit(left_actual, left_speed, step=5) 
+        right_actual = fast_rate_limit(right_actual, right_speed, step=5) 
+
+        left_motors.spin(DirectionType.FORWARD, left_actual, VelocityUnits.PERCENT)
+        right_motors.spin(DirectionType.FORWARD, right_actual, VelocityUnits.PERCENT)
+
+            #intake motors
+        if controller.buttonR1.pressing():
+            intake_motors.spin(FORWARD, 100, PERCENT)
+        elif controller.buttonR2.pressing():
+            intake_motors.spin(FORWARD, -100, PERCENT)
+        else:
+            intake_motors.stop(COAST)
+        
+        if controller.buttonL1.pressing():
+            motor_intake_2.spin(FORWARD, 100, PERCENT)
+        elif controller.buttonL2.pressing():
+            motor_intake_2.spin(FORWARD, -100, PERCENT)
+        else:
+            motor_intake_2.stop(COAST)
+        
+        #Codes for Pneumatics, matchload
+        if controller.buttonX.pressing() and last_pressed == False:
+            toggle_state = not toggle_state
+            if toggle_state:
+                match_load.open()
+            else:
+                match_load.close()
+        last_pressed = controller.buttonX.pressing()
+        
+        #Outtake piston 
+        if controller.buttonUp.pressing() and last_pressed_2 == False:
+            toggle_state_2 = not toggle_state_2
+            if toggle_state_2:
+                outtake_launcher.open()
+            else:
+                outtake_launcher.close()     
+        last_pressed_2 = controller.buttonUp.pressing()  
+
+        #wing
+        if controller.buttonA.pressing() and last_pressed_3 == False:
+            toggle_stage_3 = not toggle_stage_3
+            if toggle_stage_3:
+                wing.open()
+            else:
+                wing.close()
+        last_pressed_3 = controller.buttonA.pressing()
+
+        wait(20, MSEC)
+        # Tell VEX what *functions* we want to run when
+        Competition(driver_control, auton_long_goal_right)
 
 
 '''
