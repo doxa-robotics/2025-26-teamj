@@ -57,8 +57,8 @@ drivetrain = SmartDrive(
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
      
-def auton_only_long_goal_right():
-
+def auton_long_goal_left():
+    ###########LONG_GOAL##############
     drivetrain.set_drive_velocity(100, RPM)
     drivetrain.drive_for(FORWARD, 550, MM)
     match_load.open()
@@ -68,16 +68,12 @@ def auton_only_long_goal_right():
     wait(800, MSEC)
     outtake_launcher.open()
     intake_motors.stop()
-    #drivetrain.drive_for(REVERSE, 250, MM)
-    #drivetrain.turn_for(LEFT, 20, DEGREES)
     drivetrain.drive_for(REVERSE, 485, MM)
-    #drivetrain.drive_for(REVERSE, 235, MM)
-    #drivetrain.turn_for(RIGHT, 20, DEGREES)
     match_load.close()
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(1600, MSEC)
     intake_outtake_motors.stop()
-    ####
+    ################CENTER_GOAL#################
     drivetrain.set_drive_velocity(110, RPM)
     drivetrain.drive_for(FORWARD, 260, MM)
     drivetrain.turn_for(LEFT, 135, DEGREES)
@@ -91,10 +87,10 @@ def auton_only_long_goal_right():
     intake_motors.stop()
     intake_outtake_motors.stop()
     #Done
-    ################################################################################################
+    ##########################################################
 
 
-def auton_long_goal_right():
+def auton_long_goal_left_2():
     """Auton"""
     drivetrain.set_drive_velocity(77, RPM)
     #1: Take 3 balls
@@ -139,7 +135,7 @@ def auton_long_goal_right():
     wait(20, MSEC)  
 
     
-def auton_long_goal_left():
+def auton_long_goal_right():
     """auton2"""
     drivetrain.set_drive_velocity(77, RPM)
     #1: Take 3 balls
@@ -305,7 +301,7 @@ def driver_control():
         wait(20, MSEC)
         # Tell VEX what *functions* we want to run when
 
-Competition(driver_control, auton_only_long_goal_right)
+Competition(driver_control, auton_long_goal_left)
 
 
 
