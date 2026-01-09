@@ -204,10 +204,11 @@ def auton_long_goal_lower_right():
     intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.drive_for(FORWARD, 560, MM)
     drivetrain.drive_for(REVERSE, 235, MM)
+    intake_motors.stop()
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(2000, MSEC)
-    intake_motors.stop()
     intake_outtake_motors.stop()
+
     ######################DONE#######################
 
     
