@@ -64,7 +64,7 @@ def auton_only_long_goal_right():
     match_load.open()
     intake_motors.spin(FORWARD, 400, PERCENT)
     drivetrain.turn_for(LEFT, 90, DEGREES)
-    drivetrain.drive_for(FORWARD, 236, MM)
+    drivetrain.drive_for(FORWARD, 228, MM)
     wait(800, MSEC)
     outtake_launcher.open()
     intake_motors.stop()
@@ -79,18 +79,19 @@ def auton_only_long_goal_right():
     intake_outtake_motors.stop()
     ####
     drivetrain.set_drive_velocity(110, RPM)
-    drivetrain.drive_for(FORWARD, 230, MM)
+    drivetrain.drive_for(FORWARD, 260, MM)
     drivetrain.turn_for(LEFT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
     outtake_launcher.close()
     drivetrain.drive_for(FORWARD, 560, MM)
-    drivetrain.turn_for(LEFT, 170, DEGREES)
+    drivetrain.turn_for(LEFT, 175, DEGREES)
     drivetrain.drive_for(REVERSE, 235, MM)
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(2000, MSEC)
     intake_motors.stop()
     intake_outtake_motors.stop()
     #Done
+    ################################################################################################
 
 
 def auton_long_goal_right():
