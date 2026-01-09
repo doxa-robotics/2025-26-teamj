@@ -76,9 +76,9 @@ def auton_long_goal_left():
     ################CENTER_GOAL#################
     drivetrain.set_drive_velocity(110, RPM)
     drivetrain.drive_for(FORWARD, 260, MM)
+    outtake_launcher.close()
     drivetrain.turn_for(LEFT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
-    outtake_launcher.close()
     drivetrain.drive_for(FORWARD, 560, MM)
     drivetrain.turn_for(LEFT, 175, DEGREES)
     drivetrain.drive_for(REVERSE, 235, MM)
@@ -86,11 +86,12 @@ def auton_long_goal_left():
     wait(2000, MSEC)
     intake_motors.stop()
     intake_outtake_motors.stop()
-    #Done
-    ##########################################################
+    """Auton DONE"""
+    ######################DONE#######################
+    
 
 
-def auton_long_goal_left_2():
+def auton_long_goal_left_2(): 
     """Auton"""
     drivetrain.set_drive_velocity(77, RPM)
     #1: Take 3 balls
