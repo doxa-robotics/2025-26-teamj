@@ -187,29 +187,28 @@ def auton_long_goal_lower_right():
     match_load.open()
     intake_motors.spin(FORWARD, 400, PERCENT)
     drivetrain.turn_for(RIGHT, 90, DEGREES)
-    drivetrain.drive_for(FORWARD, 228, MM)
+    drivetrain.drive_for(FORWARD, 231, MM)
     wait(800, MSEC)
     outtake_launcher.open()
     intake_motors.stop()
-    drivetrain.drive_for(REVERSE, 485, MM)
+    drivetrain.drive_for(REVERSE, 482, MM)
     match_load.close()
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(1600, MSEC)
     intake_outtake_motors.stop()
     ###########CENTER_LOWER##########
     drivetrain.set_drive_velocity(110, RPM)
-    drivetrain.drive_for(FORWARD, 260, MM)
+    drivetrain.drive_for(FORWARD, 280, MM)
     outtake_launcher.close()
     drivetrain.turn_for(RIGHT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.drive_for(FORWARD, 560, MM)
-    drivetrain.drive_for(REVERSE, 235, MM)
-    intake_motors.stop()
-    intake_outtake_motors.spin(FORWARD, 200, PERCENT)
-    wait(2000, MSEC)
-    intake_outtake_motors.stop()
-
-    ######################DONE#######################
+    drivetrain.drive_for(FORWARD, 215, MM)
+    intake_motors.stop()                                
+    intake_motors.spin(REVERSE, 200, PERCENT)   
+    wait(2000, MSEC)                                   
+    intake_motors.stop()                        
+    ######################DONE###########################
 
     
 
@@ -336,6 +335,7 @@ def driver_control():
         # Tell VEX what *functions* we want to run when
 
 Competition(driver_control, auton_long_goal_left)
+
 
 
 
