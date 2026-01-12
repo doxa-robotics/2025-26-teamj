@@ -80,7 +80,7 @@ def auton_long_goal_left():
     drivetrain.set_drive_velocity(110, RPM)
     drivetrain.drive_for(FORWARD, 270, MM)
     outtake_launcher.close()
-    drivetrain.turn_for(LEFT, 128, DEGREES)
+    drivetrain.turn_for(LEFT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.drive_for(FORWARD, 560, MM)
     drivetrain.turn_for(LEFT, 175, DEGREES)
@@ -217,34 +217,8 @@ def auton_none():
         intake_motors.spin(100, PERCENT)
         wait(500, MSEC)
         intake_motors.stop()
-        
 
 
-'''
-    """Auton DONE"""
-    drivetrain.set_drive_velocity(100)
-    drivetrain.drive_for(FORWARD, 380, MM)
-    drivetrain.turn_for(LEFT, 90, DEGREES)
-    intake_motors.spin(FORWARD, 150, PERCENT)
-    drivetrain.drive_for(FORWARD, 740, MM)
-    intake_motors.stop()
-    intake_motors.spin(REVERSE, 150, PERCENT)
-    wait(1600, MSEC)
-    intake_motors.stop()
-    drivetrain.drive_for(REVERSE, 950, MM)
-    match_load.open()
-    intake_motors.spin(FORWARD, 150, PERCENT)
-    drivetrain.turn_for(LEFT, 135, DEGREES)
-    drivetrain.drive_for(FORWARD, 190, MM)
-    wait(500, MSEC)
-    intake_motors.stop()
-    outtake_launcher.open()
-    drivetrain.drive_for(REVERSE, 540, MM)
-    intake_outtake_motors.spin(FORWARD, 150, PERCENT)
-    wait(1000, MSEC)
-    intake_outtake_motors.stop()
-    #DONE
-    '''
 def driver_control():
     #x axis
     toggle_state = False
