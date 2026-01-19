@@ -12,6 +12,12 @@ from vex import *
 
 brain = Brain()
 controller = Controller()
+
+
+
+
+
+
 #Motors on ports 1 through 6
 #Motors(port: Port, reversed: bool)
 #One side(either left or right) has to be all false while the other side is all true; so that it doesn't rotate, staying in one spot
@@ -36,7 +42,7 @@ intake_motors = MotorGroup(motor_intake)
 intake_outtake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
-wing = Pneumatics(brain.three_wire_port.a)
+wing = Pneumatics(brain.three_wire_port.d)
 
 #Gyroscope
 inertial = Inertial(Ports.PORT11)
@@ -51,12 +57,77 @@ drivetrain = SmartDrive(
     MM
 )
 
+class PID:
+    """A class implementing a PID controller."""
+
+    def __init__(self, kp, ki, kd):
+        """Initialises PID controller object from P, I, D constants, a function
+        that returns current time and the feedback function."""
+        # p, i, and d constants
+        self.kp, self.ki, self.kd = kp, ki, kd
+
+    def reset(self):
+        """Resets/creates variables for calculating the PID values."""
+        # reset PID values
+        self.proportional, self.integral, self.derivative = 0, 0, 0
+
+        # reset previous time and error variables
+        self.previous_time, self.previous_error = 0, 0
+
+    def get_value(self, value):
+        """Calculates and returns the PID value."""
+        # calculate the error (how far off the goal are we)
+        error = self.setpoint - value
+
+        # get current time
+        # the timer returns milliseconds, so we divide by 1000 to get seconds
+        t = brain.timer.system() / 1000
+
+        # time and error differences to the previous get_value call
+        dt = t - self.previous_time
+        de = error - self.previous_error
+
+        # calculate proportional (just error times the p constant)
+        self.proportional = self.kp * error
+
+        # calculate integral (error accumulated over time times the constant)
+        self.integral += error * dt * self.ki
+
+        # calculate derivative (rate of change of the error)
+        # for the rate of change, delta_time can't be 0 (divison by zero...)
+        self.derivative = 0
+        if dt > 0:
+            self.derivative = de / dt * self.kd
+
+        # update previous error and previous time values to the current values
+        self.previous_time, self.previous_error = t, error
+
+        # add P, I and D
+        value = self.proportional + self.integral + self.derivative
+
+        # return pid sum
+        return value
+
+    def set_setpoint(self, setpoint):
+        """Sets the setpoint and resets the controller variables."""
+        self.setpoint = setpoint
+        self.reset()
+
+
+
 
     
 #Autonomous
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
-     
+
+
+
+def auton_awp():
+    wait(10, MSEC)
+def auton_autonomous_skills():
+    wait(10,MSEC)
+
 def auton_long_goal_left():
     ###########LONG_GOAL##############
     drivetrain.set_drive_velocity(100, RPM)
@@ -228,6 +299,7 @@ def driver_control():
     toggle_state_2 = False
     last_pressed_2 = False
     #wing
+
     toggle_stage_3 = False
     last_pressed_3 = False
     #Drive
@@ -275,15 +347,21 @@ def driver_control():
             intake_motors.spin(FORWARD, 100, PERCENT)
         elif controller.buttonR2.pressing():
             intake_motors.spin(FORWARD, -100, PERCENT)
+        elif controller.buttonRight.pressing():
+            intake_motors.spin(FORWARD, -50, PERCENT)
         else:
             intake_motors.stop(COAST)
-        
+            #outtake-normal
         if controller.buttonL1.pressing():
-            motor_intake_2.spin(FORWARD, 100, PERCENT)
+            motor_intake_2.spin(FORWARD, 100, PERCENT) 
         elif controller.buttonL2.pressing():
             motor_intake_2.spin(FORWARD, -100, PERCENT)
+        elif controller.buttonLeft.pressing():
+            motor_intake_2.spin(FORWARD, 50, PERCENT)
         else:
             motor_intake_2.stop(COAST)
+            
+        
         
         #Codes for Pneumatics, matchload
         if controller.buttonX.pressing() and last_pressed == False:
