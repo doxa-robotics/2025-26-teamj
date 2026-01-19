@@ -57,6 +57,8 @@ drivetrain = SmartDrive(
     MM
 )
 
+
+
 class PID:
     """A class implementing a PID controller."""
 
@@ -114,7 +116,12 @@ class PID:
         self.reset()
 
 
-
+pid = PID(      
+    0, 
+    0,
+    0,
+)
+pid.set_setpoint(500)
 
     
 #Autonomous
