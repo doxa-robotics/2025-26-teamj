@@ -42,7 +42,8 @@ intake_motors = MotorGroup(motor_intake)
 intake_outtake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
-wing = Pneumatics(brain.three_wire_port.a)
+wing = Pneumatics(brain.three_wire_port.e)
+
 
 #Gyroscope
 inertial = Inertial(Ports.PORT11)  
@@ -149,8 +150,8 @@ def drive(distance):
 
         output = pid.get_value(distancetravel())
         
-        left_motors.spin(FORWARD, output*100, PERCENT)
-        right_motors.spin(FORWARD, output*100, PERCENT)
+        left_motors.spin(FORWARD, output *100, PERCENT)
+        right_motors.spin(FORWARD, output *100, PERCENT)
 
         err = pid.setpoint - distancetravel
         
@@ -164,6 +165,7 @@ def drive(distance):
 
 ###################################################################################################    
 #Autonomous
+#Xiesta length(sero)=39cm, width(garo) = 36cm, Matchloader= 9.8cm,   
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
 
@@ -430,13 +432,49 @@ def driver_control():
         last_pressed_2 = controller.buttonUp.pressing()  
 
         #wing
-        if controller.buttonA.pressing() and last_pressed_3 == False:
+        if controller.buttonY.pressing() and last_pressed_3 == False:
             toggle_stage_3 = not toggle_stage_3
             if toggle_stage_3:
                 wing.open()
             else:
                 wing.close()
-        last_pressed_3 = controller.buttonA.pressing()
+        last_pressed_3 = controller.buttonY.pressing()
+
+        if controller.buttonB.pressed:
+            while True:
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+                wing.open()
+                wait(1000, MSEC)
+                wing.close()
+                wait(1000, MSEC)
+
 
         wait(20, MSEC)
         # Tell VEX what *functions* we want to run when
