@@ -42,10 +42,10 @@ intake_motors = MotorGroup(motor_intake)
 intake_outtake_motors = MotorGroup(motor_intake, motor_intake_2)
 match_load = Pneumatics(brain.three_wire_port.d)
 outtake_launcher = Pneumatics(brain.three_wire_port.c)
-wing = Pneumatics(brain.three_wire_port.d)
+wing = Pneumatics(brain.three_wire_port.a)
 
 #Gyroscope
-inertial = Inertial(Ports.PORT11)
+inertial = Inertial(Ports.PORT11)  
 
 drivetrain = SmartDrive(
     left_motors,
@@ -58,7 +58,7 @@ drivetrain = SmartDrive(
 )
 
 
-
+####################################################################################
 class PID:
     """A class implementing a PID controller."""
 
@@ -115,25 +115,66 @@ class PID:
         self.setpoint = setpoint
         self.reset()
 
+CIRCUMFRENCE = 475.43
+KP = 0.005
+KI = 0
+KD = 70
 
-pid = PID(      
-    0, 
-    0,
-    0,
-)
-pid.set_setpoint(500)
+err = 99484
 
-###############################################################################################    
+def drive(distance):
+    """
+    When running this function, it'll go forward the amount of distance
+
+    
+    :param distance: #MM
+    """
+    pid = PID(KP, KI, KD)
+    pid.set_setpoint(distance)
+
+    left_motors.reset_position()
+    right_motors.reset_position()
+    
+    def distancetravel():
+        distance_left = left_motors.position(TURNS) * CIRCUMFRENCE
+        distance_right = right_motors.position(TURNS) * CIRCUMFRENCE
+
+        distance = (distance_left + distance_right)/2
+        return distance
+    
+
+    while abs(err) >5:
+
+        distancetravel = distance()
+
+        output = pid.get_value(distancetravel())
+        
+        left_motors.spin(FORWARD, output*100, PERCENT)
+        right_motors.spin(FORWARD, output*100, PERCENT)
+
+        err = pid.setpoint - distancetravel
+        
+    
+        wait(20, MSEC)
+    
+    left_motors.stop(BRAKE)
+    right_motors.stop(BRAKE)
+        
+    
+
+###################################################################################################    
 #Autonomous
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
 
-
+def auton_test():
+    drive(600)
+    wait(20, MSEC)
 
 def auton_awp():
-    wait(10, MSEC)
+    pass
 def auton_autonomous_skills():
-    wait(10,MSEC)
+    pass
 
 def auton_long_goal_left():
     ###########LONG_GOAL##############
@@ -337,7 +378,7 @@ def driver_control():
         if -5 < turn < 5:
             turn = 0
 
-        forward = scale_input(speed) 
+        forward = scale_input(speed)  
         rotate = scale_input(turn) 
 
         left_speed = forward + rotate
@@ -400,7 +441,7 @@ def driver_control():
         wait(20, MSEC)
         # Tell VEX what *functions* we want to run when
 
-Competition(driver_control, auton_long_goal_left)
+Competition(driver_control, auton_test)
 
 
 
