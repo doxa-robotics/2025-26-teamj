@@ -119,9 +119,7 @@ class PID:
 CIRCUMFRENCE = 475.43
 KP = 0.005
 KI = 0
-KD = 70
-
-err = 99484
+KD = 80
 
 def drive(distance):
     """
@@ -143,17 +141,18 @@ def drive(distance):
         distance = (distance_left + distance_right)/2
         return distance
     
+    err = 994849
 
     while abs(err) >5:
 
-        distancetravel = distance()
+        distance_1 = distancetravel()
 
-        output = pid.get_value(distancetravel())
+        output = pid.get_value(distance_1())
         
-        left_motors.spin(FORWARD, output *100, PERCENT)
-        right_motors.spin(FORWARD, output *100, PERCENT)
+        left_motors.spin(FORWARD, output * 100, PERCENT)
+        right_motors.spin(FORWARD, output * 100, PERCENT)
 
-        err = pid.setpoint - distancetravel
+        err = pid.setpoint - distance_1
         
     
         wait(20, MSEC)
@@ -165,7 +164,10 @@ def drive(distance):
 
 ###################################################################################################    
 #Autonomous
-#Xiesta length(sero)=39cm, width(garo) = 36cm, Matchloader= 9.8cm,   
+#Xiesta  length(sero)=39cm, ->
+#        width(garo) = 36cm, ->
+#        Matchloader= 9.8cm, together= 48.8cm  -> 
+#        Matchload_off_= 10cm, together= 29cm
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
 
@@ -178,40 +180,41 @@ def auton_awp():
 def auton_autonomous_skills():
     pass
 
+#starred
 def auton_long_goal_left():
     ###########LONG_GOAL##############
-    drivetrain.set_drive_velocity(100, RPM)
-    drivetrain.drive_for(FORWARD, 550, MM)
+    drive.set_drive_velocity(100, RPM)
+    drive.drive_for(FORWARD, 550, MM)
     match_load.open()
     intake_motors.spin(FORWARD, 400, PERCENT)
-    drivetrain.turn_for(LEFT, 92, DEGREES)
-    drivetrain.drive_for(FORWARD, 240, MM)
+    drive.turn_for(LEFT, 92, DEGREES)
+    drive.drive_for(FORWARD, 240, MM)
     wait(800, MSEC)
     outtake_launcher.open()
     intake_motors.stop()
     #drivetrain.drive_for(REVERSE, 491, MM)
-    drivetrain.drive_for(REVERSE, 100, MM)
-    drivetrain.turn_for(LEFT, 12, DEGREES)
-    drivetrain.drive_for(REVERSE, 391, MM)
+    drive.drive_for(REVERSE, 100, MM)
+    drive.turn_for(LEFT, 12, DEGREES)
+    drive.drive_for(REVERSE, 391, MM)
     match_load.close()
     intake_outtake_motors.spin(FORWARD, 300, PERCENT)
     wait(1600, MSEC)
     intake_outtake_motors.stop()
     ################CENTER_GOAL#################
-    drivetrain.set_drive_velocity(110, RPM)
-    drivetrain.drive_for(FORWARD, 270, MM)
+    drive.set_drive_velocity(110, RPM)
+    drive.drive_for(FORWARD, 270, MM)
     outtake_launcher.close()
-    drivetrain.turn_for(LEFT, 135, DEGREES)
+    drive.turn_for(LEFT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
-    drivetrain.drive_for(FORWARD, 560, MM)
-    drivetrain.turn_for(LEFT, 175, DEGREES)
-    drivetrain.drive_for(REVERSE, 235, MM)
+    drive.drive_for(FORWARD, 560, MM)
+    drive.turn_for(LEFT, 175, DEGREES)
+    drive.drive_for(REVERSE, 235, MM)
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(2000, MSEC)
     intake_motors.stop()
     intake_outtake_motors.stop()
     ######################DONE#######################
-    
+
 
 
 def auton_long_goal_left_2(): 
@@ -371,7 +374,7 @@ def driver_control():
                 return target_speed
             
     while True:
-        speed = controller.axis3.position() *0.9
+        speed = controller.axis3.position() 
         turn = controller.axis1.position()  *0.9
 
         #exp
@@ -432,14 +435,14 @@ def driver_control():
         last_pressed_2 = controller.buttonUp.pressing()  
 
         #wing
-        if controller.buttonY.pressing() and last_pressed_3 == False:
+        if controller.buttonA.pressing() and last_pressed_3 == False:
             toggle_stage_3 = not toggle_stage_3
             if toggle_stage_3:
                 wing.open()
             else:
                 wing.close()
-        last_pressed_3 = controller.buttonY.pressing()
-
+        last_pressed_3 = controller.buttonA.pressing()
+        '''
         if controller.buttonB.pressed:
             while True:
                 wing.open()
@@ -474,12 +477,12 @@ def driver_control():
                 wait(1000, MSEC)
                 wing.close()
                 wait(1000, MSEC)
-
+            '''
 
         wait(20, MSEC)
         # Tell VEX what *functions* we want to run when
 
-Competition(driver_control, auton_test)
+Competition(driver_control, auton_long_goal_left)
 
 
 
