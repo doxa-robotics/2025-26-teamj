@@ -117,9 +117,9 @@ class PID:
         self.reset()
 
 CIRCUMFRENCE = 475.43
-KP = 0.005
+KP = 0.35
 KI = 0
-KD = 80
+KD = 0.1
 
 def drive(distance):
     """
@@ -139,15 +139,21 @@ def drive(distance):
         distance_right = right_motors.position(TURNS) * CIRCUMFRENCE
 
         distance = (distance_left + distance_right)/2
-        return distance
+        return distance()
     
-    err = 994849
+    err = distance
+        #was 994849
 
-    while abs(err) >5:
+    while abs(err) > 5:
 
         distance_1 = distancetravel()
 
-        output = pid.get_value(distance_1())
+        output = pid.get_value(distance_1)
+
+        if output < -100:
+            output = -100
+        if output > 100:
+            output = 199
         
         left_motors.spin(FORWARD, output * 100, PERCENT)
         right_motors.spin(FORWARD, output * 100, PERCENT)
