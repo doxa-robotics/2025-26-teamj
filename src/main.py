@@ -117,9 +117,9 @@ class PID:
         self.reset()
 
 CIRCUMFRENCE = 475.43
-KP = 0.035
+KP = 0.005
 KI = 0
-KD = 0.1
+KD = 0.5
 
 def drive(distance):
     """
@@ -138,7 +138,8 @@ def drive(distance):
         distance_left = left_motors.position(TURNS) * CIRCUMFRENCE
         distance_right = right_motors.position(TURNS) * CIRCUMFRENCE
 
-        return (distance_left + distance_right)/2
+        distance = (distance_left + distance_right)/2
+        return distance
     
     
     err = 999999
@@ -186,7 +187,7 @@ def auton_autonomous_skills():
     pass
 
 #starred
-def auton_long_goal_left():
+def auton_long_goal_left_pid():
     ###########LONG_GOAL##############
     drive.set_drive_velocity(100, RPM)
     drive.drive_for(FORWARD, 550, MM)
@@ -214,6 +215,40 @@ def auton_long_goal_left():
     drive.drive_for(FORWARD, 560, MM)
     drive.turn_for(LEFT, 175, DEGREES)
     drive.drive_for(REVERSE, 235, MM)
+    intake_outtake_motors.spin(FORWARD, 200, PERCENT)
+    wait(2000, MSEC)
+    intake_motors.stop()
+    intake_outtake_motors.stop()
+    ######################DONE#######################
+
+def auton_long_goal_left():
+    ###########LONG_GOAL##############
+    drivetrain.set_drive_velocity(100, RPM)
+    drivetrain.drive_for(FORWARD, 550, MM)
+    match_load.open()
+    intake_motors.spin(FORWARD, 400, PERCENT)
+    drivetrain.turn_for(LEFT, 92, DEGREES)
+    drivetrain.drive_for(FORWARD, 240, MM)
+    wait(800, MSEC)
+    outtake_launcher.open()
+    intake_motors.stop()
+    #drivetrain.drive_for(REVERSE, 491, MM)
+    drivetrain.drive_for(REVERSE, 100, MM)
+    drivetrain.turn_for(LEFT, 12, DEGREES)
+    drivetrain.drive_for(REVERSE, 391, MM)
+    match_load.close()
+    intake_outtake_motors.spin(FORWARD, 300, PERCENT)
+    wait(1600, MSEC)
+    intake_outtake_motors.stop()
+    ################CENTER_GOAL#################
+    drivetrain.set_drive_velocity(110, RPM)
+    drivetrain.drive_for(FORWARD, 270, MM)
+    outtake_launcher.close()
+    drivetrain.turn_for(LEFT, 135, DEGREES)
+    intake_motors.spin(FORWARD, 200, PERCENT)
+    drivetrain.drive_for(FORWARD, 560, MM)
+    drivetrain.turn_for(LEFT, 175, DEGREES)
+    drivetrain.drive_for(REVERSE, 235, MM)
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(2000, MSEC)
     intake_motors.stop()
