@@ -60,6 +60,7 @@ drivetrain = SmartDrive(
 
 
 ####################################################################################
+
 class PID:
     """A class implementing a PID controller."""
 
@@ -72,7 +73,7 @@ class PID:
     def reset(self):
         """Resets/creates variables for calculating the PID values."""
         # reset PID values
-        self.proportional, self.integral, self.derivative = 0, 0, 0
+        self.proportional, self.integral, self.derivative, self.previous_error = 0, 0, 0,0
 
         # reset previous time and error variables
         self.previous_time, self.previous_error = 0, 0
@@ -117,9 +118,9 @@ class PID:
         self.reset()
 
 CIRCUMFRENCE = 475.43
-KP = 0.005
+KP = 0.05
 KI = 0
-KD = 0.5
+KD = 0.01
 
 def drive(distance):
     """
@@ -138,7 +139,7 @@ def drive(distance):
         distance_left = left_motors.position(TURNS) * CIRCUMFRENCE
         distance_right = right_motors.position(TURNS) * CIRCUMFRENCE
 
-        distance = (distance_left + distance_right)/2
+        distance = (distance_left + distance_right)/1.25
         return distance
     
     
@@ -165,7 +166,7 @@ def drive(distance):
     
     left_motors.stop(BRAKE)
     right_motors.stop(BRAKE)
-        
+
     
 
 ###################################################################################################    
@@ -176,7 +177,7 @@ def drive(distance):
 #        Matchload_off_= 10cm, together= 29cm
 brain.screen.clear_screen()
 brain.screen.print("autonomous code")
-
+'''
 def auton_test():
     drive(600)
     wait(20, MSEC)
@@ -220,22 +221,22 @@ def auton_long_goal_left_pid():
     intake_motors.stop()
     intake_outtake_motors.stop()
     ######################DONE#######################
-
+'''
 def auton_long_goal_left():
     ###########LONG_GOAL##############
     drivetrain.set_drive_velocity(100, RPM)
     drivetrain.drive_for(FORWARD, 550, MM)
     match_load.open()
     intake_motors.spin(FORWARD, 400, PERCENT)
-    drivetrain.turn_for(LEFT, 92, DEGREES)
-    drivetrain.drive_for(FORWARD, 240, MM)
-    wait(800, MSEC)
+    drivetrain.turn_for(LEFT, 93, DEGREES)
+    drivetrain.drive_for(FORWARD, 235, MM)
+    wait(750, MSEC)
     outtake_launcher.open()
     intake_motors.stop()
     #drivetrain.drive_for(REVERSE, 491, MM)
-    drivetrain.drive_for(REVERSE, 100, MM)
-    drivetrain.turn_for(LEFT, 12, DEGREES)
-    drivetrain.drive_for(REVERSE, 391, MM)
+    drivetrain.drive_for(REVERSE, 96, MM)
+    #drivetrain.turn_for(LEFT, 12, DEGREES)
+    drivetrain.drive_for(REVERSE, 382, MM)
     match_load.close()
     intake_outtake_motors.spin(FORWARD, 300, PERCENT)
     wait(1600, MSEC)
@@ -247,13 +248,38 @@ def auton_long_goal_left():
     drivetrain.turn_for(LEFT, 135, DEGREES)
     intake_motors.spin(FORWARD, 200, PERCENT)
     drivetrain.drive_for(FORWARD, 560, MM)
-    drivetrain.turn_for(LEFT, 175, DEGREES)
-    drivetrain.drive_for(REVERSE, 235, MM)
+    drivetrain.turn_for(LEFT, 190, DEGREES)
+    drivetrain.drive_for(REVERSE, 277, MM)
     intake_outtake_motors.spin(FORWARD, 200, PERCENT)
     wait(2000, MSEC)
     intake_motors.stop()
     intake_outtake_motors.stop()
     ######################DONE#######################
+
+
+def auton_long_goal_left_no_matchload():
+    ###########LONG_GOAL##############
+    drivetrain.set_drive_velocity(100, RPM)
+    drivetrain.drive_for(FORWARD, 550, MM)
+    drivetrain.turn_for(LEFT, 93, DEGREES)
+    drivetrain.drive_for(REVERSE, 233, MM)
+    wait(800, MSEC)
+    outtake_launcher.open()
+    intake_outtake_motors.spin(FORWARD, 200, PERCENT)
+    wait(800, MSEC)
+    intake_outtake_motors.stop() ################CENTER_GOAL#################
+    drivetrain.set_drive_velocity(110, RPM)
+    drivetrain.drive_for(FORWARD, 270, MM)
+    outtake_launcher.close()
+    drivetrain.turn_for(LEFT, 135, DEGREES)
+    intake_motors.spin(FORWARD, 200, PERCENT)
+    drivetrain.drive_for(FORWARD, 560, MM)
+    drivetrain.turn_for(LEFT, 180, DEGREES)
+    drivetrain.drive_for(REVERSE, 280, MM)
+    intake_outtake_motors.spin(FORWARD, 200, PERCENT)
+    wait(2000, MSEC)
+    intake_motors.stop()
+    intake_outtake_motors.stop()
 
 
 
@@ -414,7 +440,7 @@ def driver_control():
                 return target_speed
             
     while True:
-        speed = controller.axis3.position() 
+        speed = controller.axis3.position() *1.2
         turn = controller.axis1.position()  *0.9
 
         #exp
@@ -444,7 +470,9 @@ def driver_control():
             intake_motors.spin(FORWARD, -50, PERCENT)
         else:
             intake_motors.stop(COAST)
-            #outtake-normal
+           
+
+        #outtake-normal
         if controller.buttonL1.pressing():
             motor_intake_2.spin(FORWARD, 100, PERCENT) 
         elif controller.buttonL2.pressing():
